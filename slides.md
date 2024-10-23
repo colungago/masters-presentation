@@ -588,7 +588,7 @@ Learn More: [Mermaid Diagrams](https://sli.dev/guide/features/mermaid) and [Plan
 ---
 foo: bar
 dragPos:
-  square: 691,32,167,_,-16
+  square: 691,32,167,_,71
 ---
 
 # Draggable Elements
@@ -628,7 +628,11 @@ Double-click on the draggable elements to edit their positions.
 <v-drag-arrow two-way />
 ```
 
-<v-drag-arrow pos="67,452,253,46" two-way op70 />
+<v-drag-arrow pos="174,596,313,-73" two-way op70 />
+
+<!--
+Hola
+-->
 
 ---
 src: ./pages/imported-slides.md
