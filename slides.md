@@ -38,6 +38,8 @@ EEG y su uso en la localización de fuentes de actividad neuronal
 
 El EEG es una técnica no invasiva que permite medir la actividad eléctrica del cerebro. La localización de fuentes de actividad neuronal es un problema inverso que consiste en estimar la actividad eléctrica en el cerebro a partir de las mediciones del EEG.
 
+
+
 </div>
 <div class="col-span-1">
 
@@ -85,7 +87,10 @@ The last comment block of each slide will be treated as slide notes. It will be 
 transition: fade-out
 ---
 
-# What is Slidev?
+# Metodología
+
+
+Para llevar a cabo el análisis de los errores incurridos en la localización de fuentes de actividad neuronal al usar diversos valores nominales de conductividad cerebral, se realizó lo siguiente:
 
 Slidev is a slides maker and presenter designed for developers, consist of the following features
 
