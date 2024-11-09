@@ -30,7 +30,11 @@ layout: pageBar
 ---
 
 # Introduction
-EEG y su uso en la localización de fuentes de actividad neuronal
+EEG y su uso en la localización de fuentes de actividad neuronal. blah blah
+
+<div class="grid grid-cols-2 gap-5 items-center justify-center">
+
+<div class="col-span-1">
 
 <div class="grid grid-cols-2 gap-5 items-center justify-center">
 
