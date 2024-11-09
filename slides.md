@@ -36,7 +36,13 @@ EEG y su uso en la localización de fuentes de actividad neuronal. blah blah
 
 <div class="col-span-1">
 
+<div class="grid grid-cols-2 gap-5 items-center justify-center">
+
+<div class="col-span-1">
+
 El EEG es una técnica no invasiva que permite medir la actividad eléctrica del cerebro. La localización de fuentes de actividad neuronal es un problema inverso que consiste en estimar la actividad eléctrica en el cerebro a partir de las mediciones del EEG.
+
+
 
 </div>
 <div class="col-span-1">
@@ -85,7 +91,10 @@ The last comment block of each slide will be treated as slide notes. It will be 
 transition: fade-out
 ---
 
-# What is Slidev?
+# Metodología
+
+
+Para llevar a cabo el análisis de los errores incurridos en la localización de fuentes de actividad neuronal al usar diversos valores nominales de conductividad cerebral, se realizó lo siguiente:
 
 Slidev is a slides maker and presenter designed for developers, consist of the following features
 
@@ -588,7 +597,7 @@ Learn More: [Mermaid Diagrams](https://sli.dev/guide/features/mermaid) and [Plan
 ---
 foo: bar
 dragPos:
-  square: 691,32,167,_,-16
+  square: 691,32,167,_,71
 ---
 
 # Draggable Elements
@@ -628,7 +637,11 @@ Double-click on the draggable elements to edit their positions.
 <v-drag-arrow two-way />
 ```
 
-<v-drag-arrow pos="67,452,253,46" two-way op70 />
+<v-drag-arrow pos="174,596,313,-73" two-way op70 />
+
+<!--
+Hola
+-->
 
 ---
 src: ./pages/imported-slides.md
