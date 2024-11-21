@@ -36,15 +36,13 @@ EEG y su uso en la localización de fuentes de actividad neuronal. blah blah
 
 <div class="col-span-1">
 
-<div class="grid grid-cols-2 gap-5 items-center justify-center">
-
-<div class="col-span-1">
 
 El EEG es una técnica no invasiva que permite medir la actividad eléctrica del cerebro. La localización de fuentes de actividad neuronal es un problema inverso que consiste en estimar la actividad eléctrica en el cerebro a partir de las mediciones del EEG.
 
 
 
 </div>
+
 <div class="col-span-1">
 
 - 📝 **Text-based** - focus on the content with Markdown, and then style them later
