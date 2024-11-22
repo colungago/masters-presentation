@@ -7,6 +7,7 @@ authors: # First author should be the presenter
   - Oscar Colunga: ["Instituto de Física, UNAM"]
 meeting: "Presentación de Tesis"
 preTitle: "Análisis de los Errores Incurridos en la Localización de Fuentes de Actividad Neuronal al Usar Diversos Valores Nominales de Conductividad Cerebral"
+shortTitle: "BSCR Error Analysis"
 ---
 
 <br>
@@ -68,12 +69,8 @@ Método Propuesto
 
 <div class="col-span-1">
 
-El EEG es una técnica no invasiva que permite medir la actividad eléctrica del cerebro. La localización de fuentes de actividad neuronal es un problema inverso que consiste en estimar la actividad eléctrica en el cerebro a partir de las mediciones del EEG.
+<img border="rounded" src="./gfx/pipeline.png" alt="">
 
-
-Adding stuff to test
-
-test
 
 </div>
 <div class="col-span-1">
