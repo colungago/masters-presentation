@@ -9,7 +9,6 @@
     "remote": "slidev --open --remote"
   },
   "dependencies": {
-    "@slidev": "latest",
     "@slidev/cli": "latest",
     "@slidev/theme-default": "latest",
     "@slidev/theme-seriph": "latest",
