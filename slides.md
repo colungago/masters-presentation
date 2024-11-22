@@ -3,7 +3,7 @@ theme: ./theme
 title: "Presentación de Tesis"
 layout: cover
 class: text-left
-authors:  # First author should be the presenter
+authors: # First author should be the presenter
   - Oscar Colunga: ["Instituto de Física, UNAM"]
 meeting: "Presentación de Tesis"
 preTitle: "Análisis de los Errores Incurridos en la Localización de Fuentes de Actividad Neuronal al Usar Diversos Valores Nominales de Conductividad Cerebral"
@@ -29,7 +29,7 @@ preTitle: "Análisis de los Errores Incurridos en la Localización de Fuentes de
 layout: pageBar
 ---
 
-# Introduction
+# Introducción
 EEG y su uso en la localización de fuentes de actividad neuronal. blah blah
 
 <div class="grid grid-cols-2 gap-5 items-center justify-center">
@@ -52,6 +52,36 @@ El EEG es una técnica no invasiva que permite medir la actividad eléctrica del
 </div>
 
 </div>
+
+---
+layout: pageBar
+---
+
+# Metodología
+Método Propuesto
+
+<div class="grid grid-cols-2 gap-5 items-center justify-center">
+
+<div class="col-span-1">
+
+El EEG es una técnica no invasiva que permite medir la actividad eléctrica del cerebro. La localización de fuentes de actividad neuronal es un problema inverso que consiste en estimar la actividad eléctrica en el cerebro a partir de las mediciones del EEG.
+
+</div>
+<div class="col-span-1">
+
+- 📝 **Text-based** - focus on the content with Markdown, and then style them later
+- 🎨 **Themable** - theme can be shared and used with npm packages
+- 🧑‍💻 **Developer Friendly** - code highlighting, live coding with autocompletion
+- 🤹 **Interactive** - embedding Vue components to enhance your expressions
+- 🎥 **Recording** - built-in recording and camera view
+- 📤 **Portable** - export into PDF, PNGs, or even a hostable SPA
+- 🛠 **Hackable** - anything possible on a webpage
+
+</div>
+
+</div>
+
+
 
 
 
