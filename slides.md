@@ -70,6 +70,9 @@ Método Propuesto
 
 El EEG es una técnica no invasiva que permite medir la actividad eléctrica del cerebro. La localización de fuentes de actividad neuronal es un problema inverso que consiste en estimar la actividad eléctrica en el cerebro a partir de las mediciones del EEG.
 
+
+Adding stuff to test
+
 </div>
 <div class="col-span-1">
 
