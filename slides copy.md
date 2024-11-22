@@ -65,9 +65,9 @@ layout: pageBar
 # Metodología
 Método Propuesto
 
-<div class="grid grid-cols-3 gap-5 items-center justify-center">
+<div class="grid grid-cols-2 gap-5 items-center justify-center">
 
-<div class="col-span-2">
+<div class="col-span-1">
 
 <img border="rounded" src="./gfx/pipeline.png" alt="">
 
@@ -75,24 +75,13 @@ Método Propuesto
 </div>
 <div class="col-span-1">
 
-<!-- - 📝 **Text-based** - focus on the content with Markdown, and then style them later
+- 📝 **Text-based** - focus on the content with Markdown, and then style them later
 - 🎨 **Themable** - theme can be shared and used with npm packages
 - 🧑‍💻 **Developer Friendly** - code highlighting, live coding with autocompletion
 - 🤹 **Interactive** - embedding Vue components to enhance your expressions
 - 🎥 **Recording** - built-in recording and camera view
 - 📤 **Portable** - export into PDF, PNGs, or even a hostable SPA
-- 🛠 **Hackable** - anything possible on a webpage -->
-
-**Problema Directo**
-
-- En la primera etapa, se define el modelo geométrico realista de la cabeza (1).
-- Luego, se varía la conductividad (2) y se calcula la matriz de ganancia (3), formando así nuestro modelo de volumen conductor.
-- Posteriormente, se resuelve el problema directo utilizando el volumen conductor y un dipolo de corriente fijo (4).
-- Esto da como resultado mediciones de EEG simuladas (5).
-
-**Problema Inverso**
-
-- Estas mediciones se emplean junto con el modelo de volumen conductor para resolver el problema inverso y localizar las fuentes de actividad neuronal (6).
+- 🛠 **Hackable** - anything possible on a webpage
 
 </div>
 
