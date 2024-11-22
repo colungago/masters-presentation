@@ -73,6 +73,8 @@ El EEG es una técnica no invasiva que permite medir la actividad eléctrica del
 
 Adding stuff to test
 
+test
+
 </div>
 <div class="col-span-1">
 
