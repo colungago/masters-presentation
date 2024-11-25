@@ -1,5 +1,9 @@
 ---
 theme: ./theme
+drawings:
+  enabled: true
+  persist: false
+  syncAll: true
 title: "Presentación de Tesis"
 layout: cover
 class: text-left
@@ -14,7 +18,7 @@ shortTitle: "BSCR Error Analysis"
 <!-- <p style="color:#0FA3B1;">Don't explicitly put title on cover page 🥳 </p>
 <p style="color:#0FA3B1;">Put your own logo somewhere </p> -->
 
-<img id="ATLAS" src='/gfx/guana.jpg'> </img>
+<img id="ATLAS" src='./gfx/guana.jpg'> </img>
 
 <style scoped>
 #ATLAS {
@@ -26,8 +30,30 @@ shortTitle: "BSCR Error Analysis"
   background-image: linear-gradient(45deg, #4EC5D4 15%, #146b8c 50%); */
 }
 </style>
+
+
+---
+layout: two-cols
+layoutClass: gap-16
+---
+
+# Table of contents
+
+You can use the `Toc` component to generate a table of contents for your slides:
+
+```html
+<Toc minDepth="1" maxDepth="1"></Toc>
+```
+
+The title will be inferred from your slide content, or you can override it with `title` and `level` in your frontmatter.
+
+::right::
+
+<Toc v-click minDepth="1" maxDepth="2"></Toc>
+
 ---
 layout: pageBar
+title: "Introducción"
 ---
 
 # Introducción
@@ -36,6 +62,10 @@ EEG y su uso en la localización de fuentes de actividad neuronal. blah blah
 <div class="grid grid-cols-2 gap-5 items-center justify-center">
 
 <div class="col-span-1">
+
+$$
+	V(r) = \frac{2\sigma_{0}}{\sigma_{k}^{-} + {\sigma_{k}^{+}}} V_{0}(r) + \frac{1}{2\pi} \sum_{j=1}^{R}\frac{\sigma_{j}^{-}-\sigma_{j}^{+}}{\sigma_{k}^{-}+\sigma_{k}^{+}} \int_{r'\varepsilon S_{j}} V(r') \frac{r'-r}{||r'-r||^3}\partial S_{j}
+$$
 
 
 El EEG es una técnica no invasiva que permite medir la actividad eléctrica del cerebro. La localización de fuentes de actividad neuronal es un problema inverso que consiste en estimar la actividad eléctrica en el cerebro a partir de las mediciones del EEG.
@@ -58,12 +88,45 @@ El EEG es una técnica no invasiva que permite medir la actividad eléctrica del
 
 </div>
 
+
+
+
 ---
 layout: pageBar
+title: "Métodología - Método Propuesto"
 ---
 
 # Metodología
 Método Propuesto
+
+
+
+El método propuesto para poner a prueba la hipótesis de que la variación de la conductividad cerebral afecta la localización de fuentes de actividad neuronal consta de las siguientes etapas:
+
+- **Modelo Geométrico**: 
+
+Se realiza una aproximación estructural y se determinan las propiedades bioelectromagnéticas de los tejidos, incluyendo las variaciones de conductividad.
+
+- **Solución del problema directo**:
+
+Se utilizan dipolos eléctricos para modelar puntos fijos de actividad neuronal, equivalentes a respuestas evocadas (ER). Se representa matricialmente las variaciones espacio-temporales del dipolo.
+
+- **Solución del problema inverso**: 
+
+Se analizan las señales simuladas para identificar la posición de las fuentes de actividad neuronal.
+
+- **Análisis estadístico**: 
+
+Se utiliza la frontera de Cramer-Rao para verificar el desempeño del estimador como un estimador no sesgado.
+
+
+---
+layout: pageBar
+title: "Métodología - Proceso"
+---
+
+# Metodología
+Proceso del Método Propuesto
 
 <div class="grid grid-cols-3 gap-5 items-center justify-center">
 
@@ -71,17 +134,8 @@ Método Propuesto
 
 <img border="rounded" src="./gfx/pipeline.png" alt="">
 
-
 </div>
 <div class="col-span-1">
-
-<!-- - 📝 **Text-based** - focus on the content with Markdown, and then style them later
-- 🎨 **Themable** - theme can be shared and used with npm packages
-- 🧑‍💻 **Developer Friendly** - code highlighting, live coding with autocompletion
-- 🤹 **Interactive** - embedding Vue components to enhance your expressions
-- 🎥 **Recording** - built-in recording and camera view
-- 📤 **Portable** - export into PDF, PNGs, or even a hostable SPA
-- 🛠 **Hackable** - anything possible on a webpage -->
 
 **Problema Directo**
 
@@ -98,325 +152,423 @@ Método Propuesto
 
 </div>
 
-
-
-
-
----
-
-# Welcome to Slidev
-
-Presentation slides for developers
-
-<div class="pt-12">
-  <span @click="$slidev.nav.next" class="px-2 py-1 rounded cursor-pointer" hover="bg-white bg-opacity-10">
-    Press Space for next page <carbon:arrow-right class="inline"/>
-  </span>
-</div>
-
-<div class="abs-br m-6 flex gap-2">
-  <button @click="$slidev.nav.openInEditor()" title="Open in Editor" class="text-xl slidev-icon-btn opacity-50 !border-none !hover:text-white">
-    <carbon:edit />
-  </button>
-  <a href="https://github.com/slidevjs/slidev" target="_blank" alt="GitHub" title="Open in GitHub"
-    class="text-xl slidev-icon-btn opacity-50 !border-none !hover:text-white">
-    <carbon-logo-github />
-  </a>
-</div>
-
 <!--
-The last comment block of each slide will be treated as slide notes. It will be visible and editable in Presenter Mode along with the slide. [Read more in the docs](https://sli.dev/guide/syntax.html#notes)
+Explicar el método propuesto:
+
 -->
 
 ---
-transition: fade-out
+layout: pageBar
+title: "Métodología - Construcción del Modelo Geométrico Realista"
 ---
 
 # Metodología
+Construcción del Modelo Geométrico Realista
+
+<div class="grid grid-cols-3 gap-5 items-end justify-center">
+
+<div class="col-span-1 flex flex-col items-center">
+<img border="rounded" src="./gfx/mri_axial.png" alt="">
+<p>Corte axial</p>
+</div>
+
+<div class="col-span-1 flex flex-col items-center">
+<img border="rounded" src="./gfx/mri_coronal.png" alt="">
+<p>Corte coronal</p>
+</div>
+
+<div class="col-span-1 flex flex-col items-center">
+<img border="rounded" src="./gfx/mri_sagital.png" alt="">
+<p>Corte sagital</p>
+</div>
+
+</div>
 
 
-Para llevar a cabo el análisis de los errores incurridos en la localización de fuentes de actividad neuronal al usar diversos valores nominales de conductividad cerebral, se realizó lo siguiente:
+Resonancia magnética de Colin27, utilizada como base para la construcción del modelo geométrico realista de la cabeza[^1].
 
-Slidev is a slides maker and presenter designed for developers, consist of the following features
-
-- 📝 **Text-based** - focus on the content with Markdown, and then style them later
-- 🎨 **Themable** - themes can be shared and re-used as npm packages
-- 🧑‍💻 **Developer Friendly** - code highlighting, live coding with autocompletion
-- 🤹 **Interactive** - embed Vue components to enhance your expressions
-- 🎥 **Recording** - built-in recording and camera view
-- 📤 **Portable** - export to PDF, PPTX, PNGs, or even a hostable SPA
-- 🛠 **Hackable** - virtually anything that's possible on a webpage is possible in Slidev
 <br>
-<br>
 
-Read more about [Why Slidev?](https://sli.dev/guide/why)
+[^1]: Colin27 MRI dataset, available at [BrainWeb](http://brainweb.bic.mni.mcgill.ca/brainweb/).
 
 <!--
-You can have `style` tag in markdown to override the style for the current page.
-Learn more: https://sli.dev/features/slide-scope-style
+27 tomografías de resonancia magnética de un solo sujeto, utilizadas para construir un modelo geométrico realista de la cabeza.
+Ponderadas en T1, T2 y PD.
+Modelo 2008
 -->
 
-<style>
-h1 {
-  background-color: #2B90B6;
-  background-image: linear-gradient(45deg, #4EC5D4 10%, #146b8c 20%);
-  background-size: 100%;
-  -webkit-background-clip: text;
-  -moz-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -moz-text-fill-color: transparent;
-}
-</style>
+---
+layout: pageBar
+title: "Métodología - Modelo Geométrico Realista"
+---
+
+# Metodología
+Modelo Geométrico Realista
+
+<br>
+<br>
+<br>
+<br>
+<div class="container mx-auto max-w-15xl">
+<!-- <div class="grid grid-cols-2 grid-rows-2 gap-5 items-end justify-center"> -->
+<div class="grid grid-cols-4 gap-5 items-end justify-center">
+
+  <div class="flex flex-col items-center">
+      <img class="w-full max-w-md" border="rounded" src="./gfx/cortex.png" alt="Image 1">
+      <p>Corteza cerebral <br> Resolución: 29988 triángulos</p> 
+  </div>
+
+  <div class="flex flex-col items-center">
+      <img class="w-full max-w-md" border="rounded" src="./gfx/inner_skull.png" alt="Image 4">
+      <p>Capa interna del cráneo <br> Resolución: 8640 triángulos</p>
+  </div>
+
+  <div class="flex flex-col items-center">
+      <img class="w-full max-w-md" border="rounded" src="./gfx/outer_skull.png" alt="Image 2">
+      <p>Capa externa del cráneo <br> Resolución: 8640 triángulos</p>
+  </div>
+
+  <div class="flex flex-col items-center">
+      <img class="w-full max-w-md" border="rounded" src="./gfx/head.png" alt="Image 3">
+      <p>Cuero cabelludo <br> Resolución: 6480 triángulos</p>
+  </div>
+
+  </div>
+</div>
+
+<br>
+
+- Mallas teseladas construidas a partir de la resonancia magnética de Colin27
+- Cada malla representa una de las interfaces entre los tejidos de la cabeza
 
 <!--
 Here is another comment.
 -->
 
 ---
-transition: slide-up
-level: 2
+layout: pageBar
+title: "Métodología - Arreglo de Electrodos de EEG"
 ---
+# Arreglo de Electrodos de EEG
+Metodología
 
-# Navigation
+<div class="flex justify-center">
+  <img class="w-full max-w-md" border="rounded" src="./gfx/EEG_10-10.png" alt="" style="background-color: white;">
+</div>
 
-Hover on the bottom-left corner to see the navigation's controls panel, [learn more](https://sli.dev/guide/navigation.html)
+- Arreglo de electrodos EEG con sistema 10-10, tomada de la literatura[^2]
+-  TODO: añadir modleo 3d del arreglo de electrodos
 
-## Keyboard Shortcuts
-
-|     |     |
-| --- | --- |
-| <kbd>right</kbd> / <kbd>space</kbd>| next animation or slide |
-| <kbd>left</kbd>  / <kbd>shift</kbd><kbd>space</kbd> | previous animation or slide |
-| <kbd>up</kbd> | previous slide |
-| <kbd>down</kbd> | next slide |
-
-<!-- https://sli.dev/guide/animations.html#click-animation -->
-<img
-  v-click
-  class="absolute -bottom-9 -left-7 w-80 opacity-50"
-  src="https://sli.dev/assets/arrow-bottom-left.svg"
-  alt=""
-/>
-<p v-after class="absolute bottom-23 left-45 opacity-30 transform -rotate-10">Here!</p>
+[^2]: Source: "EEG Electrode Placement" by John Doe, available at [EEG Source](http://example.com/eeg-source).
 
 ---
-layout: two-cols
-layoutClass: gap-16
+layout: pageBar
+title: "Métodología - Modelo Geométrico Realista Completo"
 ---
+# Modelo Geométrico Realista Completo
+Metodología
 
-# Table of contents
+<div class="flex justify-center">
+  <img class="w-full max-w-2xl" border="rounded" src="./gfx/whole_model.png" alt="">
+</div>
 
-You can use the `Toc` component to generate a table of contents for your slides:
+- Modelo completo de la cabeza, compuesto de las mallas de la corteza cerebral, cráneo, cuero cabelludo, y el arreglo de electrodos EEG.
+- Ejes de coordenadas: X (rojo), Y (verde), Z (azul). 
+<!-- TODO: añadir planos -->
 
-```html
-<Toc minDepth="1" maxDepth="1"></Toc>
-```
 
-The title will be inferred from your slide content, or you can override it with `title` and `level` in your frontmatter.
-
-::right::
-
-<Toc v-click minDepth="1" maxDepth="2"></Toc>
 
 ---
-layout: image-right
-image: https://cover.sli.dev
+layout: pageBar
+title: "Metodología - Variación de la Conductividad"
 ---
 
-# Code
+# Variación de la Conductividad
+Metodología - Problema Directo
 
-Use code snippets and get the highlighting directly, and even types hover![^1]
+<div class="grid grid-cols-2 gap-5 items-start justify-center mx-auto max-w-6xl p-4">
 
-```ts {all|5|7|7-8|10|all} twoslash
-// TwoSlash enables TypeScript hover information
-// and errors in markdown code blocks
-// More at https://shiki.style/packages/twoslash
+<div class="col-span-1">
 
-import { computed, ref } from 'vue'
+- La conductividad de los tejidos de la cabeza son parámetros importantes en la simulación del EEG.
+- Usualmente, se asumen valores nominales y se consideran constantes e isotrópicos.
+- Sin embargo, la conductividad de estos tejidos varía en la realidad, dependiendo de factores como la edad, sexo, y patologías.
+- En este trabajo, se considera la variación de la conductividad en los tejidos cerebrales y su efecto en la localización de fuentes de actividad neuronal.
 
-const count = ref(0)
-const doubled = computed(() => count.value * 2)
+</div>
 
-doubled.value = 2
-```
+<div class="col-span-1">
+  <div class="overflow-x-auto shadow-sm rounded-lg">
+  <table class="w-full table-auto border-collapse text-sm">
+      <thead>
+        <tr class="bg-gray-20 border-b-2">
+          <th class="text-left px-3 py-2">ID</th>
+          <th class="text-right px-3 py-2">BSCR</th>
+          <th class="text-left px-3 py-2">Referencias</th>
+          <th class="text-left px-3 py-2">Año</th>
+        </tr>
+      </thead>
+    <tbody>
+      <tr class="border-b">
+        <td class="px-3 py-2">1</td>
+        <td class="text-right px-3 py-2">79.36</td>
+        <td class="px-3 py-2">Cohen1983</td>
+        <td class="px-3 py-2">1990</td>
+      </tr>
+      <tr class="border-b">
+        <td class="px-3 py-2">2</td>
+        <td class="text-right px-3 py-2">208.33</td>
+        <td class="px-3 py-2">eriksenVivoHumanHead1990</td>
+        <td class="px-3 py-2">2003</td>
+      </tr>
+      <tr class="border-b">
+        <td class="px-3 py-2">3</td>
+        <td class="text-right px-3 py-2">68.96</td>
+        <td class="px-3 py-2">gonalvesVivoMeasurementBrain2003</td>
+        <td class="px-3 py-2">2004</td>
+      </tr>
+      <tr class="border-b">
+        <td class="px-3 py-2">4</td>
+        <td class="text-right px-3 py-2">22.17</td>
+        <td class="px-3 py-2">Baysal2004</td>
+        <td class="px-3 py-2">2004</td>
+      </tr>
+      <tr class="border-b">
+        <td class="px-3 py-2">5</td>
+        <td class="text-right px-3 py-2">26.24</td>
+        <td class="px-3 py-2">Gutierrez2004</td>
+        <td class="px-3 py-2">2011</td>
+      </tr>
+      <tr class="border-b">
+        <td class="px-3 py-2">6</td>
+        <td class="text-right px-3 py-2">41.84</td>
+        <td class="px-3 py-2">Dannhauer2011</td>
+        <td class="px-3 py-2">2014</td>
+      </tr>
+      <tr class="border-b">
+        <td class="px-3 py-2">7</td>
+        <td class="text-right px-3 py-2">33.00</td>
+        <td class="px-3 py-2">aydinCombiningEEGMEG2014a</td>
+        <td class="px-3 py-2">2016</td>
+      </tr>
+      <tr class="border-b">
+        <td class="px-3 py-2">8</td>
+        <td class="text-right px-3 py-2">10.30</td>
+        <td class="px-3 py-2">acarHighresolutionEEGSource2016</td>
+        <td class="px-3 py-2">2003</td>
+      </tr>
+      <tr class="border-b">
+        <td class="px-3 py-2">9</td>
+        <td class="text-right px-3 py-2">20.00</td>
+        <td class="px-3 py-2">hoekemaMeasurementConductivitySkull2003</td>
+        <td class="px-3 py-2">1968</td>
+      </tr>
+      <tr class="border-b">
+        <td class="px-3 py-2">10</td>
+        <td class="text-right px-3 py-2">80.00</td>
+        <td class="px-3 py-2">Rush1968</td>
+        <td class="px-3 py-2">1983</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
-<arrow v-click="[4, 5]" x1="350" y1="310" x2="195" y2="334" color="#953" width="2" arrowSize="1" />
-
-<!-- This allow you to embed external code blocks -->
-<<< @/snippets/external.ts#snippet
-
-<!-- Footer -->
-[^1]: [Learn More](https://sli.dev/guide/line-highlighting)
-
-<!-- Inline style -->
-<style>
-.footnotes-sep {
-  @apply mt-5 opacity-10;
-}
-.footnotes {
-  @apply text-sm opacity-75;
-}
-.footnote-backref {
-  display: none;
-}
-</style>
-
-<!--
-Notes can also sync with clicks
-
-[click] This will be highlighted after the first click
-
-[click] Highlighted with `count = ref(0)`
-
-[click:3] Last click (skip two clicks)
--->
+<p class="text-sm mt-4">
+<strong>Tabla 1:</strong> Valores de la razón de conductividad cerebro-cráneo (BSCR).
+</p>
+</div>
+</div>
 
 ---
-level: 2
+layout: pageBar
+title: "Metodología - Matriz de Ganancia"
 ---
 
-# Shiki Magic Move
+# Matriz de Ganancia
+Metodología - Problema Directo
 
-Powered by [shiki-magic-move](https://shiki-magic-move.netlify.app/), Slidev supports animations across multiple code snippets.
+Regresando al sistema de la solución del problema directo
 
-Add multiple code blocks and wrap them with <code>````md magic-move</code> (four backticks) to enable the magic move. For example:
+$$
+  V = VL + V_{0}
+$$
 
-````md magic-move {lines: true}
-```ts {*|2|*}
-// step 1
-const author = reactive({
-  name: 'John Doe',
-  books: [
-    'Vue 2 - Advanced Guide',
-    'Vue 3 - Basic Guide',
-    'Vue 4 - The Mystery'
-  ]
-})
-```
+- $L$ es la matriz de ganancia, y define el modelo de la respuesta de los electrodos a la actividad neuronal generada por un dipolo eléctrico.
 
-```ts {*|1-2|3-4|3-4,8}
-// step 2
-export default {
-  data() {
-    return {
-      author: {
-        name: 'John Doe',
-        books: [
-          'Vue 2 - Advanced Guide',
-          'Vue 3 - Basic Guide',
-          'Vue 4 - The Mystery'
-        ]
-      }
+- En otras palabras, $L$ representa la relación entre las propiedades bioelectromagnéticas de los tejidos y las mediciones de EEG.
+
+- Por lo tanto, fue necesario calcular la matriz de ganancia para cada variación de la conductividad en los tejidos cerebrales.
+
+<p style="text-align: center;"> 
+
+```mermaid
+stateDiagram
+A: Malla de la corteza (dipolos) 
+B: Mallas de los tejidos
+C: Posición de los electrodos
+D: Conductividad
+E: Matriz de ganancia
+
+A --> E
+B --> E
+C --> E
+D --> E 
+``` 
+</p>
+
+- Obteniendo 10 matrices de ganancia, una para cada valor de la razón de conductividad cerebro-cráneo (BSCR).
+- Cada matriz de ganancia tiene dimensiones $N_{e} \times N_{d}$, donde $N_{e}$ es el número de electrodos y $N_{d}$ es el número de dipolos.
+- Por lo tanto, se obtuvieron 10 matrices de ganancia de dimensiones $45006 \times 65$.
+
+---
+layout: pageBar
+title: "Metodología - Problema Directo"
+---
+
+# Simulación de Fuentes de Actividad Neuronal
+Metodología
+
+- El dipolo eléctrico es un modelo simplificado de la actividad neuronal correspondiente a una respuesta evocada (ER).
+- Se definió un dipolo eléctrico con componentes X, Y, Z, y dirección y magnitud variables.
+
+<div class="grid grid-cols-2 gap-5 items-end justify-center mx-auto max-w-6xl p-4">
+
+<div class="col-span-1">
+<div img="rounded" class="w-full max-w-md">
+  <img src="./gfx/dipole-function.png" alt="" >
+  <p class="text-sm">Función de dipolo eléctrico</p>
+</div>
+</div>
+
+<div class="col-span-1">
+<div img="rounded" class="w-full max-w-md">
+  <img src="./gfx/dipolefig.png" alt="">
+  <p class="text-sm">Dipolo eléctrico</p>
+</div>
+</div>
+</div>
+
+---
+layout: pageBar
+title: "Metodología - Dipolos Corticales"
+---
+# Dipolos Corticales
+Metodología
+
+<div class="grid grid-cols-3 gap-5 items-center justify-center">
+
+<div class="col-span-2">
+  <div class="flex justify-center">
+    <img class="w-full max-w-xl" border="rounded" src="./gfx/dipoles.png" alt="">
+  </div>
+</div>
+
+<div class="col-span-1">
+
+- Para tener un análisis más robusto, se consideraron 3 dipolos en diferentes regiones de la corteza cerebral.
+- Estos dipolos representan la actividad neuronal de eventos evocados (ER) en diferentes regiones del cerebro.
+- Se consideraron las zonas somatosensoriales (Dipolo 1), visuales (Dipolo 2), y auditivas (Dipolo 3).
+- Estos dipolos se crearon como *scouts* en Brainstorm, y se utilizaron para resolver el problema directo.  
+</div>
+
+</div>
+
+
+
+---
+layout: pageBar
+title: "Metodología - Simulación de EEG"
+---
+
+# Solución del Problema Directo
+Metodología
+
+
+2. **Datos de Entrada para el Problema Directo**: Los scouts se utilizaron como entrada para resolver el problema directo en Brainstorm, junto con:
+   - La función del dipolo respecto al tiempo,
+   - El modelo de conductor volumétrico basado en geometría realista,
+   - La matriz de ganancia para cada BSCR, y
+   - El arreglo de sensores de EEG.
+
+3. **Mediciones de EEG Simuladas**: Este enfoque produjo 100 mediciones de EEG simuladas para cada BSCR en los tres scouts, lo que resultó en un total de 300 mediciones.
+
+4. **Adición de Ruido para Condiciones Realistas**: Se añadió ruido a los datos simulados para considerar condiciones experimentales con pacientes, utilizando una relación señal/ruido (SNR) de 1%, 5%, y 10% de la magnitud de la señal. El ruido se añadió mediante la siguiente función de Brainstorm:
+
+
+   $\text{Source} = \text{Source} + \text{SNR} \times (\text{randn}(\text{size}(\text{Source}) - 0.5)) \times \text{max}(\text{abs}(\text{Source}))$
+
+   donde *Source* es la señal de EEG simulada y *SNR* es la razón señal/ruido.
+
+5. **Conjunto de Datos Final**: Este proceso generó 3 sets de 10,000 mediciones para cada uno de los 3 dipolos, resultando en un total de 90,000 mediciones de EEG simuladas diferentes.
+
+
+
+
+---
+layout: pageBar
+title: "Métodología - Problema Inverso"
+---
+
+# Proceso del Problema Directo
+Metodología
+
+<div class="grid grid-rows-2 gap-4 items-start justify-center">
+<div class="row-span-1">
+
+```mermaid {scale: 0.9}
+stateDiagram-v2
+  direction LR
+
+  entry: Datos de entrada
+
+
+  Scout: Brainstorm#58; <br> - Posición del dipolo (scout) <br> - Modelo geométrico como volumen conductor <br> - Respuesta temporal del dipolo
+ 
+  BEM: OpenMEEG#58; <br> Cálculo de la matriz de ganancia por cada BSCR utilizando BEM <br> 10 en total
+
+  PD: Solución del problema directo en Brainstorm
+
+  PD1: 100 simulaciones de EEG por cada matriz de ganancia <br> 1,000 en total
+  SNR: Simulación con diferente relación señal/ruido (SNR), 3 niveles de SNR <br> 3,000 en total
+  Sol: Implementación para 3 zonas diferentes de la corteza cerebral <br> 9,000 en total
+
+
+
+  entry --> PD
+  state entry {
+    direction LR
+    BEM
+    Scout
     }
+  
+  state PD {
+    direction LR
+    PD1 --> SNR
+    SNR --> Sol
   }
-}
 ```
-
-```ts
-// step 3
-export default {
-  data: () => ({
-    author: {
-      name: 'John Doe',
-      books: [
-        'Vue 2 - Advanced Guide',
-        'Vue 3 - Basic Guide',
-        'Vue 4 - The Mystery'
-      ]
-    }
-  })
-}
-```
-
-Non-code blocks are ignored.
-
-```vue
-<!-- step 4 -->
-<script setup>
-const author = {
-  name: 'John Doe',
-  books: [
-    'Vue 2 - Advanced Guide',
-    'Vue 3 - Basic Guide',
-    'Vue 4 - The Mystery'
-  ]
-}
-</script>
-```
-````
-
----
-
-# Components
-
-<div grid="~ cols-2 gap-4">
-<div>
-
-You can use Vue components directly inside your slides.
-
-We have provided a few built-in components like `<Tweet/>` and `<Youtube/>` that you can use directly. And adding your custom components is also super easy.
-
-```html
-<Counter :count="10" />
-```
-
-<!-- ./components/Counter.vue -->
-<Counter :count="10" m="t-4" />
-
-Check out [the guides](https://sli.dev/builtin/components.html) for more.
-
 </div>
-<div>
 
-```html
-<Tweet id="1390115482657726468" />
-```
+<div class="row-span-1">
+El ruido se añadió mediante la siguiente función de Brainstorm: 
 
-<Tweet id="1390115482657726468" scale="0.65" />
+$$\text{Source} = \text{Source} + \text{SNR} \times (\text{randn}(\text{size}(\text{Source}) - 0.5)) \times \text{max}(\text{abs}(\text{Source}))\text{,}$$
 
+donde *Source* es la señal de EEG simulada y *SNR* es la razón señal/ruido.
 </div>
 </div>
 
-<!--
-Presenter note with **bold**, *italic*, and ~~striked~~ text.
-
-Also, HTML elements are valid:
-<div class="flex w-full">
-  <span style="flex-grow: 1;">Left content</span>
-  <span>Right content</span>
-</div>
--->
-
 ---
-class: px-20
+layout: pageBar
+title: "Métodología - Problema Inverso"
 ---
 
-# Themes
+# Filtrado Espacial
+Metodología
 
-Slidev comes with powerful theming support. Themes can provide styles, layouts, components, or even configurations for tools. Switching between themes by just **one edit** in your frontmatter:
 
-<div grid="~ cols-2 gap-2" m="t-2">
 
-```yaml
----
-theme: default
----
-```
 
-```yaml
----
-theme: seriph
----
-```
-
-<img border="rounded" src="https://github.com/slidevjs/themes/blob/main/screenshots/theme-default/01.png?raw=true" alt="">
-
-<img border="rounded" src="https://github.com/slidevjs/themes/blob/main/screenshots/theme-seriph/01.png?raw=true" alt="">
-
-</div>
-
-Read more about [How to use a theme](https://sli.dev/themes/use.html) and
-check out the [Awesome Themes Gallery](https://sli.dev/themes/gallery.html).
 
 ---
 
@@ -455,85 +607,6 @@ also allows you to add
 
 </div>
 
----
-
-# Motions
-
-Motion animations are powered by [@vueuse/motion](https://motion.vueuse.org/), triggered by `v-motion` directive.
-
-```html
-<div
-  v-motion
-  :initial="{ x: -80 }"
-  :enter="{ x: 0 }"
-  :click-3="{ x: 80 }"
-  :leave="{ x: 1000 }"
->
-  Slidev
-</div>
-```
-
-<div class="w-60 relative">
-  <div class="relative w-40 h-40">
-    <img
-      v-motion
-      :initial="{ x: 800, y: -100, scale: 1.5, rotate: -50 }"
-      :enter="final"
-      class="absolute inset-0"
-      src="https://sli.dev/logo-square.png"
-      alt=""
-    />
-    <img
-      v-motion
-      :initial="{ y: 500, x: -100, scale: 2 }"
-      :enter="final"
-      class="absolute inset-0"
-      src="https://sli.dev/logo-circle.png"
-      alt=""
-    />
-    <img
-      v-motion
-      :initial="{ x: 600, y: 400, scale: 2, rotate: 100 }"
-      :enter="final"
-      class="absolute inset-0"
-      src="https://sli.dev/logo-triangle.png"
-      alt=""
-    />
-  </div>
-
-  <div
-    class="text-5xl absolute top-14 left-40 text-[#2B90B6] -z-1"
-    v-motion
-    :initial="{ x: -80, opacity: 0}"
-    :enter="{ x: 0, opacity: 1, transition: { delay: 2000, duration: 1000 } }">
-    Slidev
-  </div>
-</div>
-
-<!-- vue script setup scripts can be directly used in markdown, and will only affects current page -->
-<script setup lang="ts">
-const final = {
-  x: 0,
-  y: 0,
-  rotate: 0,
-  scale: 1,
-  transition: {
-    type: 'spring',
-    damping: 10,
-    stiffness: 20,
-    mass: 2
-  }
-}
-</script>
-
-<div
-  v-motion
-  :initial="{ x:35, y: 30, opacity: 0}"
-  :enter="{ y: 0, opacity: 1, transition: { delay: 3500 } }">
-
-[Learn More](https://sli.dev/guide/animations.html#motion)
-
-</div>
 
 ---
 
@@ -635,85 +708,8 @@ database "MySql" {
 
 Learn More: [Mermaid Diagrams](https://sli.dev/guide/features/mermaid) and [PlantUML Diagrams](https://sli.dev/guide/features/plantuml)
 
----
-foo: bar
-dragPos:
-  square: 691,32,167,_,71
----
 
-# Draggable Elements
 
-Double-click on the draggable elements to edit their positions.
-
-<br>
-
-###### Directive Usage
-
-```md
-<img v-drag="'square'" src="https://sli.dev/logo.png">
-```
-
-<br>
-
-###### Component Usage
-
-```md
-<v-drag text-3xl>
-  <carbon:arrow-up />
-  Use the `v-drag` component to have a draggable container!
-</v-drag>
-```
-
-<v-drag pos="663,206,261,_,-15">
-  <div text-center text-3xl border border-main rounded>
-    Double-click me!
-  </div>
-</v-drag>
-
-<img v-drag="'square'" src="https://sli.dev/logo.png">
-
-###### Draggable Arrow
-
-```md
-<v-drag-arrow two-way />
-```
-
-<v-drag-arrow pos="174,596,313,-73" two-way op70 />
-
-<!--
-Hola
--->
-
----
-src: ./pages/imported-slides.md
-hide: false
----
-
----
-
-# Monaco Editor
-
-Slidev provides built-in Monaco Editor support.
-
-Add `{monaco}` to the code block to turn it into an editor:
-
-```ts {monaco}
-import { ref } from 'vue'
-import { emptyArray } from './external'
-
-const arr = ref(emptyArray(10))
-```
-
-Use `{monaco-run}` to create an editor that can execute the code directly in the slide:
-
-```ts {monaco-run}
-import { version } from 'vue'
-import { emptyArray, sayHello } from './external'
-
-sayHello()
-console.log(`vue ${version}`)
-console.log(emptyArray<number>(10).reduce(fib => [...fib, fib.at(-1)! + fib.at(-2)!], [1, 1]))
-```
 
 ---
 layout: center
