@@ -563,10 +563,574 @@ layout: pageBar
 title: "Métodología - Problema Inverso"
 ---
 
-# Filtrado Espacial
+# Solución del Problema Inverso
 Metodología
 
+<div class="grid grid-rows-2 gap-4 items-start justify-center">
+<div class="row-span-1">
 
+- El método seleccionado para resolver el problema inverso fue el de filtrado espacial, específicamente, el método de filtrado espacial LCMV
+
+- Los datos de EEG simulados se utilizaron como entrada para el método de filtrado espacial, junto con:
+  - La matriz de ganancia para cada BSCR,
+  - El modelo de conductor volumétrico basado en geometría realista, y
+  - La posición de los electrodos de EEG.
+
+</div>
+<div class="row-span-1">
+
+```mermaid 
+stateDiagram-v2
+  direction LR
+
+  entry: Brainstorm
+
+  1: 100 mediciones de EEG de un BSCR contra las 10 matrices de ganacia diferentes#58; <br> 1,000 en total
+  2: Expansión de cada set de mediciones de EEG por BSCR con cada matriz de ganancia#58;<br>10,000 en total
+  3: Simulación con los 3 niveles de SNR#58;<br>30,000 en total
+  4: Implementación para 3 zonas diferentes de la corteza cerebral#58;<br>90,000 en total
+
+  state entry {
+    direction LR
+    1 --> 2
+    2 --> 3
+    3 --> 4
+    }
+```
+</div>
+</div>
+
+- El resultado de la solución del problema inverso es un kernel de imagen, el cual una vez ejecutado, proporciona un mapa de la actividad neuronal en la corteza cerebral denominado mapa de índice de actividad neuronal (PNAI).
+  
+---
+layout: pageBar
+title: "Métodología - Error de Localización"
+---
+
+# Cuantificación del Error de Localización
+Metodología
+
+<div class="grid grid-cols-2 gap-2 items-center justify-center">
+
+  <div class="col-span-1">
+  <div class="flex justify-center">
+  <img class="w-full max-w-md" border="rounded" src="./gfx/zone_1-2.png" alt="">
+  </div>
+  </div>
+
+  <div class="col-span-1">
+  <div class="flex justify-center">
+  <img class="w-full max-w-md" border="rounded" src="./gfx/zone_3.png" alt="">
+  </div>
+  </div>
+</div>
+
+
+- Para cuantificar el error de localización de las fuentes de actividad neuronal, los resultados del problema inverso se separaron en grupos definidos por la razón de conductividad cerebro-cráneo (BSCR), la relación señal/ruido (SNR), y la región de la corteza cerebral.
+
+- El error de localización se calculó como la distancia euclidiana entre la posición real del dipolo y la posición estimada por el método de filtrado espacial.
+
+- A su vez, esta posición estimada se definió como el punto de máxima actividad neuronal en la ROI correspondiente al dipolo de origen.
+
+
+<!-- 
+t = 397.2
+d1 = 29.17 cm2
+d2 = 51.75 cm2
+d3 = 76.92.17 cm2
+ -->
+---
+layout: pageBar
+title: "Métodología - Error de Localización"
+---
+
+# Estandarización del Error de Localización
+Metodología
+
+- La distancia entre la posición real y la estimada tenía una tendencia a 0, salvo algunos valores atípicos provocados por la introducción de ruido en los datos simulados.
+
+- Por lo tanto, se tomaron tres medidas para estandarizar el error de localización:
+  - Debido a la distribución sesgada a la derecha de los datos, se utilizó la media del percentil 95 como medida de tendencia central.
+  - Se calculó la media y la desviación estándar de la distancia euclidiana entre los vértices de la malla de la corteza cerebral.
+  - Se dividió el error de localización por la media de la resolución de la malla de la corteza cerebral, obteniendo así una medida adimensional del error de localización.
+
+- Quedando así, el error de localización estandarizado como:
+
+	$$\text{Error}_{\text{estandarizado}} = \frac{\text{Posición}_{\text{localización}}-\text{Posición}_{\text{real}}}{\text{Distancia media}_{\text{vértices}}}\text{,}$$
+
+  y la desviación estándar del error de localización estandarizado como:
+
+  $$\text{Desviación estándar}_{\text{estandarizada}} = \frac{\text{Desviación estándar}_{\text{localización}}}{\text{Distancia media}_{\text{vértices}}}\text{.}$$
+
+---
+layout: pageBar
+title: "Métodología - Análisis Estadístico"
+---
+
+# Análisis Estadístico
+Metodología
+
+- Para evaluar el desempeño del estimador de la posición de la fuente de actividad neuronal, se utilizó la frontera de Cramér-Rao.
+- La frontera de Cramér-Rao es una cota inferior para la varianza de un estimador no sesgado.
+- Este límite teórico inferior de la varianza del error para un estimador no sesgado se representa como una desigualdad con el valor esperado del estimador de la forma:
+
+$$\text{E}\left\{(\hat{\theta} - \theta)(\hat{\theta} - \theta)^{\text{T}}\right\} \geq \text{CRB}(\theta)\text{,}$$
+
+donde $\hat{\theta}$ es el estimador, $\theta$ es el parámetro de interés, y $\text{CRB}(\theta)$ es la matriz de Cramér-Rao.
+
+- Esta a su vez se puede definir como la inversa de la matriz de información de Fisher,
+
+<div class="grid grid-cols-3 gap-2 items-center justify-center">
+
+  <div class="col-span-1">
+  <div class="flex justify-center">
+  
+  $$\text{CRB}(\theta) = \left[\mathcal{I}(\theta)\right]^{-1}\text{,}$$
+  
+  </div>
+  </div>
+
+  <div class="col-span-1">
+  <div class="flex justify-center">
+  y en términos de la matriz de información de Fisher para el EEG, se tiene:
+  
+  </div>
+  </div>
+  
+  <div class="col-span-1">
+ <div class="flex justify-center">
+
+$$\text{CRB}(\theta) = [J^{\text{EEG}}(\theta)]^{-1}\text{,}$$
+</div>
+</div>
+</div>
+
+Expandiendo la matriz de información de Fisher para el EEG, se obtiene:
+$$
+J_{ij}^{\text{EEG}}(\theta) = q^{\text{T}}\left(\frac{\partial k}{\partial \theta_{i}}\right)^{\text{T}}\frac{\text{L}^{\text{T}}\text{L}}{\sigma^2_{\text{E}}}\left(\frac{\partial k}{\partial \theta_{i}}\right)q\text{,}
+$$
+
+donde $q$ es la magnitud del dipolo en el instante de 397.2 ms, $\text{L}$ es la matriz de ganancia, $\sigma^2_{\text{E}}$ es la varianza del ruido de las mediciones de EEG, y $\frac{\partial k}{\partial \theta_{i}}$ es la derivada parcial de las posiciones de los dipolos con respecto a la posición de los sensores de EEG .
+
+
+
+---
+layout: pageBar
+title: "Métodología - Análisis Estadístico"
+---
+
+# Proceso del Análisis Estadístico
+Metodología
+
+- El proceso de análisis estadístico de los resultados del problema inverso se realizó en Matlab y Mathematica, y constó de las siguientes etapas:
+
+<br>
+<br>
+
+```mermaid 
+stateDiagram-v2
+  direction LR
+
+  entry: Brainstorm
+  mat: Matlab
+  math: Mathematica
+
+  1: Ejecución del kernel de proyección para cada medición de EEG en el instante de 397.2 ms
+  2: Obtención de la posición de magnitud máxima local
+  3: Estimador de la posición de magnitud máxima y el error de localización
+  4: Estandarización del error de localización con respecto a la resolución de la malla de la corteza cerebral
+  5: Análisis estadístico del estimador con la frontera de Cramér-Rao
+
+  entry --> mat
+  state entry {
+    direction LR
+    1 
+    }
+
+  state mat {
+    direction LR
+    2 --> 3
+    3 --> 4
+    4 --> math
+    state math {
+      direction LR
+      5
+    }
+  }
+  
+```
+
+---
+layout: pageBar
+title: "Resultados"
+---
+
+# Resultados
+Resumen
+
+
+
+---
+layout: pageBar
+title: "Resultados"
+---
+
+# Solución del Problema Directo
+Resultados
+
+<div class="grid grid-cols-3 gap-2 items-start justify-center">
+<div class="col-span-2">
+<div class="flex justify-center">
+<div img="rounded" class="w-full max-w-2xl">
+  <img src="./gfx/sankey-direct.png" alt="" >
+</div>
+</div>
+</div>
+
+<div class="col-span-1">
+<div class="flex justify-center">
+
+- Diagrama de la distribución de las mediciones de EEG simuladas en el problema directo.
+- El resultado final del problema directo es un conjunto de mediciones de EEG simuladas para cada BSCR, SNR, y dipolo cortical.
+- Obteniendo un total de 3,000 mediciones de EEG simuladas para cada dipolo cortical, sumando 9,000 en total.
+</div>
+</div>
+</div>
+
+---
+layout: pageBar
+title: "Resultados - Señales de EEG"
+---
+
+# Señales de EEG Simuladas
+Resultados
+
+<div class="w-full h-full grid grid-cols-2 grid-rows-2 gap-4 items-center justify-center p-4">
+  <!-- First Cell -->
+  <div class="flex justify-center">
+    <div class="w-full max-w-md rounded">
+      <img src="./gfx/eeg-d1n1c8c8.png" alt="EEG BSCR 10">
+      <p class="text-center text-m mt-2">Señales de EEG simuladas con BSCR = 10</p>
+    </div>
+  </div>
+
+  <!-- Second Cell -->
+  <div class="flex justify-center">
+    <div class="w-full max-w-md rounded">
+      <img src="./gfx/eeg-d1n1c9c9.png" alt="EEG BSCR 20">
+      <p class="text-center text-m mt-2">Señales de EEG simuladas con BSCR = 20</p>
+    </div>
+  </div>
+
+  <!-- Third Cell -->
+  <div class="flex justify-center">
+    <div class="w-full max-w-md rounded">
+      <img src="./gfx/eeg-d1n1c10c10.png" alt="EEG BSCR 80">
+      <p class="text-center text-m mt-2">Señales de EEG simuladas con BSCR = 80</p>
+    </div>
+  </div>
+
+  <!-- Fourth Cell -->
+  <div class="flex justify-center">
+    <div class="w-full max-w-md rounded">
+      <img src="./gfx/eeg-d1n1c2c2.png" alt="EEG BSCR 200">
+      <p class="text-center text-m mt-2">Señales de EEG simuladas con BSCR = 200</p>
+    </div>
+  </div>
+</div>
+
+
+---
+layout: pageBar
+title: "Resultados - Problema Inverso"
+---
+
+# Solución del Problema Inverso
+Resultados
+
+<div class="grid grid-cols-3 gap-2 items-start justify-center">
+<div class="col-span-2">
+<div class="flex justify-center">
+<div img="rounded" class="w-full max-w-2xl">
+  <img src="./gfx/sankey-inverse.png" alt="" >
+</div>
+</div>
+</div>
+
+<div class="col-span-1">
+<div class="flex justify-center">
+
+- Diagrama de la distribución de la solución del problema inverso.
+- El resultado final del problema inverso es un conjunto de mapas de actividad neuronal para conjuntos de datos simulados con diferentes BSCR y SNR.
+- Obteniendo un total de 30,000 mapas de actividad neuronal para cada dipolo cortical, sumando 90,000 en total.
+
+</div>
+</div>
+</div>
+
+
+---
+layout: pageBar
+title: "Resultados - Mapas de Actividad Neuronal"
+---
+
+# Mapas de Actividad Neuronal
+Resultados
+
+
+<div class="w-full h-full grid grid-cols-2 gap-2 items-stretch justify-stretch">
+  <!-- First Cell -->
+  <div class="flex flex-col items-center justify-center p-2">
+    <div class="w-full max-w-xl h-full flex flex-col justify-between">
+      <img src="./gfx/inverse-d1n1c8c8.png" alt="EEG BSCR 10" class="rounded h-auto max-h-full">
+      <p class="text-center text-m mt-2">Señales de EEG simuladas con BSCR = 10</p>
+    </div>
+  </div>
+
+  <!-- Second Cell -->
+  <div class="flex flex-col items-center justify-center p-2">
+    <div class="w-full max-w-xl h-full flex flex-col justify-between">
+      <img src="./gfx/inverse-d1n1c9c9.png" alt="EEG BSCR 20" class="rounded h-auto max-h-full">
+      <p class="text-center text-m mt-2">Señales de EEG simuladas con BSCR = 20</p>
+    </div>
+  </div>
+
+</div>
+
+
+---
+layout: pageBar
+title: "Resultados - Mapas de Actividad Neuronal"
+---
+
+# Mapas de Actividad Neuronal
+Resultados
+
+
+<div class="w-full h-full grid grid-cols-2 gap-2 items-stretch justify-stretch">
+
+  <!-- Third Cell -->
+  <div class="flex flex-col items-center justify-center p-2">
+    <div class="w-full max-w-xl h-full flex flex-col justify-between">
+      <img src="./gfx/inverse-d1n1c10c10.png" alt="EEG BSCR 80" class="rounded h-auto max-h-full">
+      <p class="text-center text-m mt-2">Señales de EEG simuladas con BSCR = 80</p>
+    </div>
+  </div>
+
+  <!-- Fourth Cell -->
+  <div class="flex flex-col items-center justify-center p-2">
+    <div class="w-full max-w-xl h-full flex flex-col justify-between">
+      <img src="./gfx/inverse-d1n1c2c2.png" alt="EEG BSCR 200" class="rounded h-auto max-h-full">
+      <p class="text-center text-m mt-2">Señales de EEG simuladas con BSCR = 200</p>
+    </div>
+  </div>
+</div>
+
+
+---
+layout: pageBar
+title: "Resultados - Error de Localización"
+---
+
+# Error de Localización
+Resultados
+
+<div class="grid grid-cols-3 gap-2 items-start justify-center">
+<div class="col-span-2">
+<div class="flex justify-center">
+<div img="rounded" class="w-full max-w-2xl">
+  <img src="./gfx/individual_lod.png" alt="" >
+</div>
+</div>
+</div>
+
+<div class="col-span-1">
+<div class="flex justify-center">
+
+- Diagrama de la distribución del error de localización del dipolo 1, correspondiente a la zona somatosensorial
+- Los datos de entrada son las mediciones de EEG simuladas con BSCR = 200 y SNR = 1%
+- Cada grupo de resultados corresponde a una solución del problema inverso utilizando diferentes valores de BSCR
+- Efectivamente comparando el desempeño de variar la razón de conductividad cerebro-cráneo en la localización de la fuente de actividad neuronal
+
+</div>
+</div>
+</div>
+
+---
+layout: pageBar
+title: "Resultados - Error de Localización"
+---
+
+# Error de Localización
+Resultados
+
+
+<div class="w-full h-full grid grid-cols-2 gap-2 items-stretch justify-stretch">
+  <!-- First Cell -->
+  <div class="flex flex-col items-center justify-center p-2">
+    <div class="w-full max-w-xl h-full flex flex-col justify-between">
+      <img src="./gfx/d1c8n1.png" alt="EEG BSCR 10" class="rounded h-auto max-h-full">
+      <p class="text-center text-m mt-2">Error en la localización de la fuente de actividad neuronal <br>BSCR = 10</p>
+    </div>
+  </div>
+
+  <!-- Second Cell -->
+  <div class="flex flex-col items-center justify-center p-2">
+    <div class="w-full max-w-xl h-full flex flex-col justify-between">
+      <img src="./gfx/d1c9n1.png" alt="EEG BSCR 20" class="rounded h-auto max-h-full">
+      <p class="text-center text-m mt-2">Error en la localización de la fuente de actividad neuronal <br>BSCR = 20</p>
+    </div>
+  </div>
+
+</div>
+
+
+---
+layout: pageBar
+title: "Resultados - Error de Localización"
+---
+
+# Error de Localización
+Resultados
+
+
+<div class="w-full h-full grid grid-cols-2 gap-2 items-stretch justify-stretch">
+
+  <!-- Third Cell -->
+  <div class="flex flex-col items-center justify-center p-2">
+    <div class="w-full max-w-xl h-full flex flex-col justify-between">
+      <img src="./gfx/d1c10n1.png" alt="EEG BSCR 80" class="rounded h-auto max-h-full">
+      <p class="text-center text-m mt-2">Error en la localización de la fuente de actividad neuronal <br>BSCR = 80</p>
+    </div>
+  </div>
+
+  <!-- Fourth Cell -->
+  <div class="flex flex-col items-center justify-center p-2">
+    <div class="w-full max-w-xl h-full flex flex-col justify-between">
+      <img src="./gfx/d1c2n1.png" alt="EEG BSCR 200" class="rounded h-auto max-h-full">
+      <p class="text-center text-m mt-2">Error en la localización de la fuente de actividad neuronal <br>BSCR = 200</p>
+    </div>
+  </div>
+</div>
+
+---
+layout: pageBar
+title: "Resultados - Evaluación del Error"
+---
+
+# Evaluación del Error Incurrido
+Resultados
+
+Error incurrido en la localización de la fuente de actividad neuronal en con
+el dipolo en la zona visual y los tres niveles de SNR
+
+<div class="w-full h-full grid grid-cols-2 gap-2 items-stretch justify-stretch">
+
+  <!-- Third Cell -->
+  <div class="flex flex-col items-center justify-center p-2">
+    <div class="w-full max-w-lg h-full flex flex-col justify-between">
+      <img src="./gfx/d2c9n1.png" alt="EEG BSCR 80" class="rounded h-auto max-h-full">
+      <p class="text-center text-m mt-2">Error en la localización de la fuente de actividad neuronal con BSCR = 20 y SNR = 1%.</p>
+    </div>
+  </div>
+
+  <!-- Fourth Cell -->
+  <div class="flex flex-col items-center justify-center p-2">
+    <div class="w-full max-w-lg h-full flex flex-col justify-between">
+      <img src="./gfx/d2c10n1.png" alt="EEG BSCR 200" class="rounded h-auto max-h-full">
+      <p class="text-center text-m mt-2">Error en la localización de la fuente de actividad neuronal con BSCR = 80 y SNR = 1%.</p>
+    </div>
+  </div>
+</div>
+
+---
+layout: pageBar
+title: "Resultados - Evaluación del Error"
+---
+
+# Evaluación del Error Incurrido
+Resultados
+
+Error incurrido en la localización de la fuente de actividad neuronal en con
+el dipolo en la zona visual y los tres niveles de SNR
+
+<div class="w-full h-full grid grid-cols-2 gap-2 items-stretch justify-stretch">
+
+  <!-- Third Cell -->
+  <div class="flex flex-col items-center justify-center p-2">
+    <div class="w-full max-w-lg h-full flex flex-col justify-between">
+      <img src="./gfx/d2c9n2.png" alt="EEG BSCR 80" class="rounded h-auto max-h-full">
+      <p class="text-center text-m mt-2">Error en la localización de la fuente de actividad neuronal con BSCR = 20 y SNR = 5%.</p>
+    </div>
+  </div>
+
+  <!-- Fourth Cell -->
+  <div class="flex flex-col items-center justify-center p-2">
+    <div class="w-full max-w-lg h-full flex flex-col justify-between">
+      <img src="./gfx/d2c10n2.png" alt="EEG BSCR 200" class="rounded h-auto max-h-full">
+      <p class="text-center text-m mt-2">Error en la localización de la fuente de actividad neuronal con BSCR = 80 y SNR = 5%.</p>
+    </div>
+  </div>
+</div>
+
+---
+layout: pageBar
+title: "Resultados - Evaluación del Error"
+---
+
+# Evaluación del Error Incurrido
+Resultados
+
+Error incurrido en la localización de la fuente de actividad neuronal en con
+el dipolo en la zona visual y los tres niveles de SNR
+
+<div class="w-full h-full grid grid-cols-2 gap-2 items-stretch justify-stretch">
+
+  <!-- Third Cell -->
+  <div class="flex flex-col items-center justify-center p-2">
+    <div class="w-full max-w-lg h-full flex flex-col justify-between">
+      <img src="./gfx/d2c9n3.png" alt="EEG BSCR 80" class="rounded h-auto max-h-full">
+      <p class="text-center text-m mt-2">Error en la localización de la fuente de actividad neuronal con BSCR = 20 y SNR = 10%.</p>
+    </div>
+  </div>
+
+  <!-- Fourth Cell -->
+  <div class="flex flex-col items-center justify-center p-2">
+    <div class="w-full max-w-lg h-full flex flex-col justify-between">
+      <img src="./gfx/d2c10n3.png" alt="EEG BSCR 200" class="rounded h-auto max-h-full">
+      <p class="text-center text-m mt-2">Error en la localización de la fuente de actividad neuronal con BSCR = 80 y SNR = 10%.</p>
+    </div>
+  </div>
+</div>
+
+---
+layout: pageBar
+title: "Resultados - Evaluación del Error"
+---
+
+# Evaluación del Error Incurrido General
+Resultados
+
+<div class="grid grid-cols-3 gap-2 items-start justify-center">
+<div class="col-span-2">
+<div class="flex justify-center">
+<div img="rounded" class="w-full max-w-3xl">
+  <img src="./gfx/sankey-boxplots.png" alt="" >
+</div>
+</div>
+</div>
+
+<div class="col-span-1">
+<div class="flex justify-center">
+
+- Diagrama de la distribución del error de localización sin considerar el valor de BSCR utilizado en la solución del problema inverso.
+- El fin de este análisis es evaluar el error general incurrido en la solución del problema inverso por grupo de datos simulados con el mismo BSCR en el problema directo.
+- Esto nos permite cuantificar el error de localización cuando el BSCR varía en la solución del problema directo.
+
+
+</div>
+</div>
+</div>
 
 
 
