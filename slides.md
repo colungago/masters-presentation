@@ -563,12 +563,70 @@ layout: pageBar
 title: "Métodología - Problema Inverso"
 ---
 
-# Filtrado Espacial
+# Solución del Problema Inverso
 Metodología
 
+<div class="grid grid-rows-2 gap-4 items-start justify-center">
+<div class="row-span-1">
+
+- El método seleccionado para resolver el problema inverso fue el de filtrado espacial, específicamente, el método de filtrado espacial LCMV
+
+- Los datos de EEG simulados se utilizaron como entrada para el método de filtrado espacial, junto con:
+  - La matriz de ganancia para cada BSCR,
+  - El modelo de conductor volumétrico basado en geometría realista, y
+  - La posición de los electrodos de EEG.
+
+</div>
+<div class="row-span-1">
+
+```mermaid 
+stateDiagram-v2
+  direction LR
+
+  entry: Brainstorm
+
+  1: 100 mediciones de EEG de un BSCR contra las 10 matrices de ganacia diferentes#58; <br> 1,000 en total
+  2: Expansión de cada set de mediciones de EEG por BSCR con cada matriz de ganancia#58;<br>10,000 en total
+  3: Simulación con los 3 niveles de SNR#58;<br>30,000 en total
+  4: Implementación para 3 zonas diferentes de la corteza cerebral#58;<br>90,000 en total
+
+  state entry {
+    direction LR
+    1 --> 2
+    2 --> 3
+    3 --> 4
+    }
+```
+</div>
+
+</div>
+  
+---
+layout: pageBar
+title: "Métodología - Error de Localización"
+---
+
+# Cuantificación del Error de Localización
+Metodología
+
+<div class="grid grid-cols-2 gap-2 items-center justify-center">
+
+  <div class="col-span-1">
+  <div class="flex justify-center">
+  <img class="w-full max-w-md" border="rounded" src="./gfx/zone_1-2.png" alt="">
+  </div>
+  </div>
+
+  <div class="col-span-1">
+  <div class="flex justify-center">
+  <img class="w-full max-w-md" border="rounded" src="./gfx/zone_3.png" alt="">
+  </div>
+  </div>
+</div>
 
 
 
+- Para cuantificar el error de localización de las fuentes de actividad neuronal, los resultados del problema inverso se separaron en grupos definidos por la razón de conductividad cerebro-cráneo (BSCR), la relación señal/ruido (SNR), y la región de la corteza cerebral.
 
 ---
 
