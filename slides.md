@@ -32,61 +32,153 @@ shortTitle: "BSCR Error Analysis"
 </style>
 
 
----
-layout: two-cols
-layoutClass: gap-16
----
-
-# Table of contents
-
-You can use the `Toc` component to generate a table of contents for your slides:
-
-```html
-<Toc minDepth="1" maxDepth="1"></Toc>
-```
-
-The title will be inferred from your slide content, or you can override it with `title` and `level` in your frontmatter.
-
-::right::
-
-<Toc v-click minDepth="1" maxDepth="2"></Toc>
 
 ---
 layout: pageBar
-title: "Introducción"
+title: "Introducción - EEG"
 ---
 
-# Introducción
-EEG y su uso en la localización de fuentes de actividad neuronal. blah blah
+# Electroecefalografía: Uso Clínico y Científico
+Introducción
 
-<div class="grid grid-cols-2 gap-5 items-center justify-center">
+<br>
 
-<div class="col-span-1">
+<div class="w-full h-full grid grid-cols-2 gap-2 items-center justify-stretch">
+
+<div class="flex flex-col items-center justify-center p-2">
+    <div class="w-full max-w-2xl h-full flex flex-col justify-between">
+      <img src="./gfx/eeg-epilepsy.jpg" alt="EEG BSCR 80" class="rounded h-auto max-h-full">
+      <!-- <p class="text-center text-m mt-2">Dipolo 3 (auditiva), SNR 1 %</p> -->
+    </div>
+  </div>
+
+  <div class="flex flex-col items-center justify-center p-2">
+    
+  - Herramienta no invasiva para el estudio de la actividad cerebral.
+
+  - Ampliamente utilizada en la clínica y la investigación.
+  - Permite la detección de patologías como la epilepsia, trastornos del sueño, y lesiones cerebrales.
+  - Regularmente utilizado a la par con otras técnicas de neuroimagen como la magnetoencefalografía (MEG).
+  - Especialmente útil para el estudio de la actividad neuronal en respuesta a estímulos sensoriales, que se manifiesta como potenciales de respuesta evocada (SEP).
+  </div>
+</div>
+
+---
+layout: pageBar
+title: "Introducción - Generadores del EEG"
+---
+
+# Generadores del EEG
+Introducción
+
+
+<div class="w-full h-full grid grid-cols-3 gap-2 items-center justify-stretch">
+
+<div class="col-span-2 items-center justify-center p-2">
+    <div class="w-full max-w-8xl h-full flex flex-col justify-between">
+      <img src="./gfx/neurons.png" alt="EEG BSCR 80" class="rounded h-auto max-h-full">
+      <p class="text-center text-m mt-2">Tomada de [1]</p>
+    </div>
+  </div>
+
+  <div class="col-span-1 items-center justify-center p-2">
+
+  - El EEG mide el potencial eléctrico sobre la superficie del cuero cabelludo. 
+  - El origen de estas señales es la corriente eléctrica generada por la actividad neuronal en la corteza cerebral.
+  - Específicamente, la actividad postsináptica de las neuronas piramidales.      
+  - La actividad neuronal se modela como dipolos eléctricos, que representan la actividad sincrónica de un grupo de neuronas. 
+  - La conductividad de los tejidos entre las fuentes de corriente y los electrodos de EEG tiene un efecto significativo en la distribución de los potenciales medidos.
+  </div>
+</div>
+
+[1]: S. Baillet, J. C. Mosher y R. M. Leahy, “Electromagnetic Brain Mapping,” IEEE Signal Processing Magazine
+
+---
+layout: pageBar
+title: "Introducción - Física del EEG"
+---
+
+# Física del EEG
+Introducción
+
+- El rango de frecuencias de los fenómenos de interés en el EEG va de 0.1 a 100 Hz.
+- La baja frecuencia de estos fenómenos tiene un efecto en la generación y propagación de las señales eléctricas en el cerebro.
+- Este efecto se puede modelar mediante la aproximación cuasi-estática de las ecuaciones de Maxwell.
+
+<div class="grid grid-cols-5 gap-1 items-center justify-center">
+
+<div class="col-span-1 items-center justify-center p-2">
+  
+</div>
+
+<div class="col-span-1 items-center justify-center p-2">
+  
+$$
+\begin{aligned}
+  \nabla \cdot E & = \frac{\rho}{\epsilon_0} \\
+
+  \nabla \cdot B & = 0 \\
+
+  \nabla \times E & = -\frac{\partial B}{\partial t}  \\  
+
+  \nabla \times B & = \mu_0 J + \mu_0 \epsilon_0 \frac{\partial E}{\partial t}
+ 
+\end{aligned}
+$$
+
+</div>
+
+<div class="col-span-1 items-center justify-center p-2">
+
 
 $$
-	V(r) = \frac{2\sigma_{0}}{\sigma_{k}^{-} + {\sigma_{k}^{+}}} V_{0}(r) + \frac{1}{2\pi} \sum_{j=1}^{R}\frac{\sigma_{j}^{-}-\sigma_{j}^{+}}{\sigma_{k}^{-}+\sigma_{k}^{+}} \int_{r'\varepsilon S_{j}} V(r') \frac{r'-r}{||r'-r||^3}\partial S_{j}
+\Huge \rightarrow
+$$
+
+</div>
+
+
+<div class="col-span-1 items-center justify-center p-2">
+  
+$$
+\begin{aligned}
+  \nabla \times B(r) & = \mu_{0} J (r) \\
+  \nabla \times E(r) & = 0 \\
+  \nabla \cdot B(r)  & = 0  \\
+  \nabla \cdot E(r)  & = 0  
+\end{aligned}
+$$
+
+</div>
+
+<div class="col-span-1 items-center justify-center p-2">
+  
+</div>
+</div>
+
+Donde $E$ y $B$ son los campos eléctrico y magnético, respectivamente, $\rho$ es la densidad de carga, $J$ es la densidad de corriente, $\epsilon_0$ es la permitividad del vacío, $\mu_0$ es la permeabilidad magnética del vacío, y $r = [r_x, r_y, r_z]^T$ es el punto de observación.
+
+Dado que $E$ es irrotacional, se puede expresar como el gradiente del potencial eléctrico $V$ como
+
+$$
+E = -\nabla V(r) \text{.}
 $$
 
 
-El EEG es una técnica no invasiva que permite medir la actividad eléctrica del cerebro. La localización de fuentes de actividad neuronal es un problema inverso que consiste en estimar la actividad eléctrica en el cerebro a partir de las mediciones del EEG.
+<!-- 
+Gauss Electrity, Gauss Magnetism, Faraday law of induction, ampere-maxwell  
 
+En (1.1) se describe la relación entre el campo
+magnético y la densidad de corriente, mientras que (1.2) a (1.4) describen la
+ausencia de fuentes magnéticas y la ausencia de carga eléctrica inducida por el
+cambio en el tiempo de E y B 
+ -->
 
+---
+layout: pageBar
+title: "Introducción - Física del EEG"
+---
 
-</div>
-
-<div class="col-span-1">
-
-- 📝 **Text-based** - focus on the content with Markdown, and then style them later
-- 🎨 **Themable** - theme can be shared and used with npm packages
-- 🧑‍💻 **Developer Friendly** - code highlighting, live coding with autocompletion
-- 🤹 **Interactive** - embedding Vue components to enhance your expressions
-- 🎥 **Recording** - built-in recording and camera view
-- 📤 **Portable** - export into PDF, PNGs, or even a hostable SPA
-- 🛠 **Hackable** - anything possible on a webpage
-
-</div>
-
-</div>
 
 
 
@@ -1248,7 +1340,7 @@ Conclusiones
     
   - El EEG es una herramienta de diagnóstico ampliamente utilizada en la práctica clínica para la detección de epilepsia y otras enfermedades neurológicas.
   - Parámetros como la edad, el sexo, y comorbilidades influyen en la variabilidad de la conductividad cerebro-cráneo.
-  
+
   - Por lo tanto, el uso de valores de BSCR en un rango de 20 a 35 puede mejorar la precisión de la localización de la fuente de actividad neuronal en la corteza cerebral en la práctica clínica.
   - Esto puede tener un impacto significativo en la detección temprana y el tratamiento de enfermedades neurológicas.
   - Además, estos resultados pueden ser de utilidad en la investigación de la actividad neuronal en la corteza cerebral al asegurar una menor variabilidad en la localización de fuentes de actividad neuronal.
