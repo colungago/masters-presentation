@@ -8,7 +8,7 @@ title: "Presentación de Tesis"
 layout: cover
 class: text-left
 authors: # First author should be the presenter
-  - Oscar Colunga: ["Instituto de Física, UNAM"]
+  - Oscar Colunga: ["Cinvestav", "Unidad Monterrey"]
 meeting: "Presentación de Tesis"
 preTitle: "Análisis de los Errores Incurridos en la Localización de Fuentes de Actividad Neuronal al Usar Diversos Valores Nominales de Conductividad Cerebral"
 shortTitle: "BSCR Error Analysis"
