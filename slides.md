@@ -1132,6 +1132,94 @@ Resultados
 </div>
 </div>
 
+---
+layout: pageBar
+title: "Resultados - Evaluación del Error General"
+---
+
+# Evaluación del Error Incurrido
+Resultados
+
+Distribución del error incurrido con el uso de diferentes valores de BSCR en la simulación y localización de fuentes de actividad neuronal.
+
+<div class="w-full h-full grid grid-cols-2 gap-2 items-stretch justify-stretch">
+
+  <!-- Third Cell -->
+  <div class="flex flex-col items-center justify-center p-2">
+    <div class="w-full max-w-lg h-full flex flex-col justify-between">
+      <img src="./gfx/d1n1.png" alt="EEG BSCR 80" class="rounded h-auto max-h-full">
+      <p class="text-center text-m mt-2">Dipolo 1 (somatosensorial), SNR 1 %</p>
+    </div>
+  </div>
+
+  <!-- Fourth Cell -->
+  <div class="flex flex-col items-center justify-center p-2">
+    <div class="w-full max-w-lg h-full flex flex-col justify-between">
+      <img src="./gfx/d1n3.png" alt="EEG BSCR 200" class="rounded h-auto max-h-full">
+      <p class="text-center text-m mt-2">Dipolo 1 (somatosensorial), SNR 10 %</p>
+    </div>
+  </div>
+</div>
+
+<!-- Recordar a la audiencia que loas cruces son outliers y son pocos -->
+
+---
+layout: pageBar
+title: "Resultados - Evaluación del Error General"
+---
+
+# Evaluación del Error Incurrido
+Resultados
+
+Distribución del error incurrido con el uso de diferentes valores de BSCR en la simulación y localización de fuentes de actividad neuronal.
+
+<div class="w-full h-full grid grid-cols-2 gap-2 items-stretch justify-stretch">
+
+  <!-- Third Cell -->
+  <div class="flex flex-col items-center justify-center p-2">
+    <div class="w-full max-w-lg h-full flex flex-col justify-between">
+      <img src="./gfx/d2n1.png" alt="EEG BSCR 80" class="rounded h-auto max-h-full">
+      <p class="text-center text-m mt-2">Dipolo 2 (visual), SNR 1 %</p>
+    </div>
+  </div>
+
+  <!-- Fourth Cell -->
+  <div class="flex flex-col items-center justify-center p-2">
+    <div class="w-full max-w-lg h-full flex flex-col justify-between">
+      <img src="./gfx/d2n3.png" alt="EEG BSCR 200" class="rounded h-auto max-h-full">
+      <p class="text-center text-m mt-2">Dipolo 2 (visual), SNR 10 %</p>
+    </div>
+  </div>
+</div>
+
+---
+layout: pageBar
+title: "Resultados - Evaluación del Error General"
+---
+
+# Evaluación del Error Incurrido
+Resultados
+
+Distribución del error incurrido con el uso de diferentes valores de BSCR en la simulación y localización de fuentes de actividad neuronal.
+
+<div class="w-full h-full grid grid-cols-2 gap-2 items-stretch justify-stretch">
+
+  <!-- Third Cell -->
+  <div class="flex flex-col items-center justify-center p-2">
+    <div class="w-full max-w-lg h-full flex flex-col justify-between">
+      <img src="./gfx/d3n1.png" alt="EEG BSCR 80" class="rounded h-auto max-h-full">
+      <p class="text-center text-m mt-2">Dipolo 3 (auditiva), SNR 1 %</p>
+    </div>
+  </div>
+
+  <!-- Fourth Cell -->
+  <div class="flex flex-col items-center justify-center p-2">
+    <div class="w-full max-w-lg h-full flex flex-col justify-between">
+      <img src="./gfx/d3n3.png" alt="EEG BSCR 200" class="rounded h-auto max-h-full">
+      <p class="text-center text-m mt-2">Dipolo 3 (auditiva), SNR 10 %</p>
+    </div>
+  </div>
+</div>
 
 
 ---
