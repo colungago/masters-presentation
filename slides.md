@@ -956,62 +956,7 @@ Resultados
 </div>
 </div>
 
----
-layout: pageBar
-title: "Resultados - Error de Localización"
----
 
-# Error de Localización
-Resultados
-
-
-<div class="w-full h-full grid grid-cols-2 gap-2 items-stretch justify-stretch">
-  <!-- First Cell -->
-  <div class="flex flex-col items-center justify-center p-2">
-    <div class="w-full max-w-xl h-full flex flex-col justify-between">
-      <img src="./gfx/d1c8n1.png" alt="EEG BSCR 10" class="rounded h-auto max-h-full">
-      <p class="text-center text-m mt-2">Error en la localización de la fuente de actividad neuronal <br>BSCR = 10</p>
-    </div>
-  </div>
-
-  <!-- Second Cell -->
-  <div class="flex flex-col items-center justify-center p-2">
-    <div class="w-full max-w-xl h-full flex flex-col justify-between">
-      <img src="./gfx/d1c9n1.png" alt="EEG BSCR 20" class="rounded h-auto max-h-full">
-      <p class="text-center text-m mt-2">Error en la localización de la fuente de actividad neuronal <br>BSCR = 20</p>
-    </div>
-  </div>
-
-</div>
-
-
----
-layout: pageBar
-title: "Resultados - Error de Localización"
----
-
-# Error de Localización
-Resultados
-
-
-<div class="w-full h-full grid grid-cols-2 gap-2 items-stretch justify-stretch">
-
-  <!-- Third Cell -->
-  <div class="flex flex-col items-center justify-center p-2">
-    <div class="w-full max-w-xl h-full flex flex-col justify-between">
-      <img src="./gfx/d1c10n1.png" alt="EEG BSCR 80" class="rounded h-auto max-h-full">
-      <p class="text-center text-m mt-2">Error en la localización de la fuente de actividad neuronal <br>BSCR = 80</p>
-    </div>
-  </div>
-
-  <!-- Fourth Cell -->
-  <div class="flex flex-col items-center justify-center p-2">
-    <div class="w-full max-w-xl h-full flex flex-col justify-between">
-      <img src="./gfx/d1c2n1.png" alt="EEG BSCR 200" class="rounded h-auto max-h-full">
-      <p class="text-center text-m mt-2">Error en la localización de la fuente de actividad neuronal <br>BSCR = 200</p>
-    </div>
-  </div>
-</div>
 
 ---
 layout: pageBar
@@ -1226,12 +1171,92 @@ layout: pageBar
 title: "Conclusiones"
 ---
 
-# Variabilidad del BSCR
+# Impacto de la Variabilidad del BSCR 
 Conclusiones
 
 - La variación de la razón de conductividad cerebro-cráneo en la solución del problema directo afecta significativamente la localización de la fuente de actividad neuronal en la solución del problema inverso.
-
 - La variación del BSCR en la solución del problema inverso tiene un impacto en la precisión de la localización de la fuente de actividad neuronal, pero no de manera significativa con valores no extremos.
+
+<div class="w-full h-full grid grid-cols-2 gap-2 items-stretch justify-stretch">
+
+  <!-- Third Cell -->
+  <div class="flex flex-col items-center justify-center p-2">
+    <div class="w-full max-w-md h-full flex flex-col justify-between">
+      <img src="./results/individual_graphs/d1c9n1.png" alt="EEG BSCR 80" class="rounded h-auto max-h-full">
+      <p class="text-center text-m mt-2">Error de localización con BSCR = 20 y SNR = 1%.</p>
+    </div>
+  </div>
+
+  <!-- Fourth Cell -->
+  <div class="flex flex-col items-center justify-center p-2">
+    <div class="w-full max-w-md h-full flex flex-col justify-between">
+      <img src="./results/individual_graphs/d1c10n1.png" alt="EEG BSCR 200" class="rounded h-auto max-h-full">
+      <p class="text-center text-m mt-2">Error de localización con BSCR = 80 y SNR = 1%.</p>
+    </div>
+  </div>
+</div>
+
+
+---
+layout: pageBar
+title: "Conclusiones"
+---
+
+# Error en Rangos de BSCR 
+Conclusiones
+
+- Los valores de BSCR en un rango de 20 a 35 presentan un menor error y variabilidad en la localización de fuentes de actividad neuronal en la corteza cerebral, comparados con el valor típico de 80 y los valores extremos de 10 y 200.
+- Esto se mantiene cierto para diferentes parámetros como la relación señal/ruido, la región de la corteza cerebral, y los valores de BSCR utilizados en la solución del problema directo.
+
+<div class="w-full h-full grid grid-cols-2 gap-2 items-stretch justify-stretch">
+
+  <!-- Third Cell -->
+  <div class="flex flex-col items-center justify-center p-2">
+    <div class="w-full max-w-md h-full flex flex-col justify-between">
+      <img src="./gfx/d3n1.png" alt="EEG BSCR 80" class="rounded h-auto max-h-full">
+      <p class="text-center text-m mt-2">Dipolo 3 (auditiva), SNR 1 %</p>
+    </div>
+  </div>
+
+  <!-- Fourth Cell -->
+  <div class="flex flex-col items-center justify-center p-2">
+    <div class="w-full max-w-md h-full flex flex-col justify-between">
+      <img src="./gfx/d3n3.png" alt="EEG BSCR 200" class="rounded h-auto max-h-full">
+      <p class="text-center text-m mt-2">Dipolo 3 (auditiva), SNR 10 %</p>
+    </div>
+  </div>
+</div>
+
+---
+layout: pageBar
+title: "Conclusiones - Impacto en la Práctica"
+---
+
+# Impacto en la Práctica e Investigación
+Conclusiones
+
+<div class="w-full h-full grid grid-cols-2 gap-2 items-stretch justify-stretch">
+
+<div class="flex flex-col items-center justify-center p-2">
+    <div class="w-full max-w-2xl h-full flex flex-col justify-between">
+      <img src="./gfx/eeg-epilepsy.jpg" alt="EEG BSCR 80" class="rounded h-auto max-h-full">
+      <!-- <p class="text-center text-m mt-2">Dipolo 3 (auditiva), SNR 1 %</p> -->
+    </div>
+  </div>
+
+  <div class="flex flex-col items-center justify-center p-2">
+    
+  - El EEG es una herramienta de diagnóstico ampliamente utilizada en la práctica clínica para la detección de epilepsia y otras enfermedades neurológicas.
+  - Parámetros como la edad, el sexo, y comorbilidades influyen en la variabilidad de la conductividad cerebro-cráneo.
+  
+  - Por lo tanto, el uso de valores de BSCR en un rango de 20 a 35 puede mejorar la precisión de la localización de la fuente de actividad neuronal en la corteza cerebral en la práctica clínica.
+  - Esto puede tener un impacto significativo en la detección temprana y el tratamiento de enfermedades neurológicas.
+  - Además, estos resultados pueden ser de utilidad en la investigación de la actividad neuronal en la corteza cerebral al asegurar una menor variabilidad en la localización de fuentes de actividad neuronal.
+
+
+
+  </div>
+</div>
 
 
 ---
@@ -1294,84 +1319,6 @@ $$
 
 [Learn more](https://sli.dev/features/latex)
 
----
-
-# Diagrams
-
-You can create diagrams / graphs from textual descriptions, directly in your Markdown.
-
-<div class="grid grid-cols-4 gap-5 pt-4 -mb-6">
-
-```mermaid {scale: 0.5, alt: 'A simple sequence diagram'}
-sequenceDiagram
-    Alice->John: Hello John, how are you?
-    Note over Alice,John: A typical interaction
-```
-
-```mermaid {theme: 'neutral', scale: 0.8}
-graph TD
-B[Text] --> C{Decision}
-C -->|One| D[Result 1]
-C -->|Two| E[Result 2]
-```
-
-```mermaid
-mindmap
-  root((mindmap))
-    Origins
-      Long history
-      ::icon(fa fa-book)
-      Popularisation
-        British popular psychology author Tony Buzan
-    Research
-      On effectiveness<br/>and features
-      On Automatic creation
-        Uses
-            Creative techniques
-            Strategic planning
-            Argument mapping
-    Tools
-      Pen and paper
-      Mermaid
-```
-
-```plantuml {scale: 0.7}
-@startuml
-
-package "Some Group" {
-  HTTP - [First Component]
-  [Another Component]
-}
-
-node "Other Groups" {
-  FTP - [Second Component]
-  [First Component] --> FTP
-}
-
-cloud {
-  [Example 1]
-}
-
-database "MySql" {
-  folder "This is my folder" {
-    [Folder 3]
-  }
-  frame "Foo" {
-    [Frame 4]
-  }
-}
-
-[Another Component] --> [Example 1]
-[Example 1] --> [Folder 3]
-[Folder 3] --> [Frame 4]
-
-@enduml
-```
-
-</div>
-
-Learn More: [Mermaid Diagrams](https://sli.dev/guide/features/mermaid) and [PlantUML Diagrams](https://sli.dev/guide/features/plantuml)
-
 
 
 
@@ -1380,8 +1327,191 @@ layout: center
 class: text-center
 ---
 
-# Learn More
+# ¡Gracias por su atención!
 
 [Documentation](https://sli.dev) · [GitHub](https://github.com/slidevjs/slidev) · [Showcases](https://sli.dev/showcases.html)
 
 <PoweredBySlidev mt-10 />
+
+
+
+---
+layout: pageBar
+title: "Anexo - Resultados Somatosensorial"
+class: text-left
+---
+
+# Evaluación del Error Incurrido
+Resultados
+
+Error incurrido en la localización de la fuente de actividad neuronal en con
+el dipolo en la zona somatosensorial y los tres niveles de SNR
+
+<div class="w-full h-full grid grid-cols-2 gap-2 items-stretch justify-stretch">
+
+  <!-- Third Cell -->
+  <div class="flex flex-col items-center justify-center p-2">
+    <div class="w-full max-w-lg h-full flex flex-col justify-between">
+      <img src="./results/individual_graphs/d1c9n1.png" alt="EEG BSCR 80" class="rounded h-auto max-h-full">
+      <p class="text-center text-m mt-2">Error en la localización de la fuente de actividad neuronal con BSCR = 20 y SNR = 1%.</p>
+    </div>
+  </div>
+
+  <!-- Fourth Cell -->
+  <div class="flex flex-col items-center justify-center p-2">
+    <div class="w-full max-w-lg h-full flex flex-col justify-between">
+      <img src="./results/individual_graphs/d1c10n1.png" alt="EEG BSCR 200" class="rounded h-auto max-h-full">
+      <p class="text-center text-m mt-2">Error en la localización de la fuente de actividad neuronal con BSCR = 80 y SNR = 1%.</p>
+    </div>
+  </div>
+</div>
+
+---
+layout: pageBar
+title: "Anexo - Resultados Somatosensorial"
+---
+
+# Evaluación del Error Incurrido
+Resultados
+
+Error incurrido en la localización de la fuente de actividad neuronal en con
+el dipolo en la zona somatosensorial y los tres niveles de SNR
+
+<div class="w-full h-full grid grid-cols-2 gap-2 items-stretch justify-stretch">
+
+  <!-- Third Cell -->
+  <div class="flex flex-col items-center justify-center p-2">
+    <div class="w-full max-w-lg h-full flex flex-col justify-between">
+      <img src="./results/individual_graphs/d1c9n2.png" alt="EEG BSCR 80" class="rounded h-auto max-h-full">
+      <p class="text-center text-m mt-2">Error en la localización de la fuente de actividad neuronal con BSCR = 20 y SNR = 5%.</p>
+    </div>
+  </div>
+
+  <!-- Fourth Cell -->
+  <div class="flex flex-col items-center justify-center p-2">
+    <div class="w-full max-w-lg h-full flex flex-col justify-between">
+      <img src="./results/individual_graphs/d1c10n2.png" alt="EEG BSCR 200" class="rounded h-auto max-h-full">
+      <p class="text-center text-m mt-2">Error en la localización de la fuente de actividad neuronal con BSCR = 80 y SNR = 5%.</p>
+    </div>
+  </div>
+</div>
+
+---
+layout: pageBar
+title: "Anexo - Resultados Somatosensorial"
+---
+
+# Evaluación del Error Incurrido
+Resultados
+
+Error incurrido en la localización de la fuente de actividad neuronal en con
+el dipolo en la zona somatosensorial y los tres niveles de SNR
+
+<div class="w-full h-full grid grid-cols-2 gap-2 items-stretch justify-stretch">
+
+  <!-- Third Cell -->
+  <div class="flex flex-col items-center justify-center p-2">
+    <div class="w-full max-w-lg h-full flex flex-col justify-between">
+      <img src="./results/individual_graphs/d1c9n3.png" alt="EEG BSCR 80" class="rounded h-auto max-h-full">
+      <p class="text-center text-m mt-2">Error en la localización de la fuente de actividad neuronal con BSCR = 20 y SNR = 10%.</p>
+    </div>
+  </div>
+
+  <!-- Fourth Cell -->
+  <div class="flex flex-col items-center justify-center p-2">
+    <div class="w-full max-w-lg h-full flex flex-col justify-between">
+      <img src="./results/individual_graphs/d1c10n3.png" alt="EEG BSCR 200" class="rounded h-auto max-h-full">
+      <p class="text-center text-m mt-2">Error en la localización de la fuente de actividad neuronal con BSCR = 80 y SNR = 10%.</p>
+    </div>
+  </div>
+</div>
+
+---
+layout: pageBar
+title: "Anexo - Resultados Somatosensorial"
+---
+
+# Evaluación del Error Incurrido
+Resultados
+
+Error incurrido en la localización de la fuente de actividad neuronal en con
+el dipolo en la zona auditiva y los tres niveles de SNR
+
+<div class="w-full h-full grid grid-cols-2 gap-2 items-stretch justify-stretch">
+
+  <!-- Third Cell -->
+  <div class="flex flex-col items-center justify-center p-2">
+    <div class="w-full max-w-lg h-full flex flex-col justify-between">
+      <img src="./results/individual_graphs/d3c9n1.png" alt="EEG BSCR 80" class="rounded h-auto max-h-full">
+      <p class="text-center text-m mt-2">Error en la localización de la fuente de actividad neuronal con BSCR = 20 y SNR = 1%.</p>
+    </div>
+  </div>
+
+  <!-- Fourth Cell -->
+  <div class="flex flex-col items-center justify-center p-2">
+    <div class="w-full max-w-lg h-full flex flex-col justify-between">
+      <img src="./results/individual_graphs/d3c10n1.png" alt="EEG BSCR 200" class="rounded h-auto max-h-full">
+      <p class="text-center text-m mt-2">Error en la localización de la fuente de actividad neuronal con BSCR = 80 y SNR = 1%.</p>
+    </div>
+  </div>
+</div>
+
+---
+layout: pageBar
+title: "Anexo - Resultados Somatosensorial"
+---
+
+# Evaluación del Error Incurrido
+Resultados
+
+Error incurrido en la localización de la fuente de actividad neuronal en con
+el dipolo en la zona auditiva y los tres niveles de SNR
+
+<div class="w-full h-full grid grid-cols-2 gap-2 items-stretch justify-stretch">
+
+  <!-- Third Cell -->
+  <div class="flex flex-col items-center justify-center p-2">
+    <div class="w-full max-w-lg h-full flex flex-col justify-between">
+      <img src="./results/individual_graphs/d3c9n2.png" alt="EEG BSCR 80" class="rounded h-auto max-h-full">
+      <p class="text-center text-m mt-2">Error en la localización de la fuente de actividad neuronal con BSCR = 20 y SNR = 5%.</p>
+    </div>
+  </div>
+
+  <!-- Fourth Cell -->
+  <div class="flex flex-col items-center justify-center p-2">
+    <div class="w-full max-w-lg h-full flex flex-col justify-between">
+      <img src="./results/individual_graphs/d3c10n2.png" alt="EEG BSCR 200" class="rounded h-auto max-h-full">
+      <p class="text-center text-m mt-2">Error en la localización de la fuente de actividad neuronal con BSCR = 80 y SNR = 5%.</p>
+    </div>
+  </div>
+</div>
+
+---
+layout: pageBar
+title: "Anexo - Resultados Somatosensorial"
+---
+
+# Evaluación del Error Incurrido
+Resultados
+
+Error incurrido en la localización de la fuente de actividad neuronal en con
+el dipolo en la zona auditiva y los tres niveles de SNR
+
+<div class="w-full h-full grid grid-cols-2 gap-2 items-stretch justify-stretch">
+
+  <!-- Third Cell -->
+  <div class="flex flex-col items-center justify-center p-2">
+    <div class="w-full max-w-lg h-full flex flex-col justify-between">
+      <img src="./results/individual_graphs/d3c9n3.png" alt="EEG BSCR 80" class="rounded h-auto max-h-full">
+      <p class="text-center text-m mt-2">Error en la localización de la fuente de actividad neuronal con BSCR = 20 y SNR = 10%.</p>
+    </div>
+  </div>
+
+  <!-- Fourth Cell -->
+  <div class="flex flex-col items-center justify-center p-2">
+    <div class="w-full max-w-lg h-full flex flex-col justify-between">
+      <img src="./results/individual_graphs/d3c10n3.png" alt="EEG BSCR 200" class="rounded h-auto max-h-full">
+      <p class="text-center text-m mt-2">Error en la localización de la fuente de actividad neuronal con BSCR = 80 y SNR = 10%.</p>
+    </div>
+  </div>
+</div>
