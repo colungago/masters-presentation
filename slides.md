@@ -1221,6 +1221,18 @@ Distribución del error incurrido con el uso de diferentes valores de BSCR en la
   </div>
 </div>
 
+---
+layout: pageBar
+title: "Conclusiones"
+---
+
+# Variabilidad del BSCR
+Conclusiones
+
+- La variación de la razón de conductividad cerebro-cráneo en la solución del problema directo afecta significativamente la localización de la fuente de actividad neuronal en la solución del problema inverso.
+
+- La variación del BSCR en la solución del problema inverso tiene un impacto en la precisión de la localización de la fuente de actividad neuronal, pero no de manera significativa con valores no extremos.
+
 
 ---
 
