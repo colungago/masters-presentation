@@ -179,6 +179,103 @@ layout: pageBar
 title: "Introducción - Física del EEG"
 ---
 
+# Física del EEG
+Introducción
+
+Con esta aproximación cuasi-estática, el flujo de corriente $J(r')$ en un punto $r'$ pueder ser relacionado con el campo magnético $B(r)$ en un punto $r$ mediante la ley de Biot-Savart
+
+$$
+B(r) = \frac{\mu_{0}}{4\pi} \int J(r') \times \frac{(r - r')}{||r - r'||^3} dV'\text{.}
+$$
+
+A su vez, la densidad de corriente total $J(r')$ puede ser dividida en dos componentes: la corriente primaria $J_{p}(r')$ que proviene de la actividad neuronal (intracelular) correspondiente al estímulo, y la corriente de volumen $J_{v}(r')$ que resulta del efecto del campo eléctrico en el tejido conductor (extracelular).
+
+
+Siendo este conjunto de corrientes expresadas como:
+
+$$
+\begin{aligned}
+
+	J(r') & = J^{p}(r') + J^{v}(r')\text{,}             \\
+
+	J(r') & = J^{p}(r') + \sigma(r') E(r')\text{,}        \\
+	J(r') & = J^{p}(r') - \sigma(r') \nabla V(r')\text{,} 
+\end{aligned}
+$$
+
+donde $\sigma(r')$ es la conductividad del tejido de la cabeza, asumiéndolo como un medio conductor isotrópico y homogéneo.
+
+Por último, la corriente primaria $J^{P}(r')$ se modela como un dipolo eléctrico en un punto $r_{q}$, con la siguiente expresión
+
+$$ J^{P}(r') = \mathbf{q} \delta(r' - r_{q})\text{,} $$
+
+siendo $\delta(r)$ la función delta de Dirac, con momento dipolar $\mathbf{q}=\int J^{P}(r') dr'$, y posición $\mathbf{r}_{q}$ en la corteza cerebral.
+
+---
+layout: pageBar
+title: Introducción - Física del EEG
+---
+
+# Física del EEG
+Introducción
+
+<br>
+<br>
+
+Por lo tanto, las dos ecuaciones que describen el perfil del campo eléctrico y magnético para un volumen conductor son
+
+$$
+\begin{aligned}
+	V_0(r) & = \frac{1}{4\pi\sigma_0} \int J^{P}(r') \cdot \frac{(r - r')}{||r - r'||^3} dr' \text{,}  \\
+	B_0(r) & = \frac{\mu_{0}}{4\pi} \int J^{P}(r') \times \frac{(r - r')}{||r - r'||^3} dr' \text{,} 
+\end{aligned}
+$$
+
+siendo $V_0(r)$ el potencial eléctrico en un punto $r$ con $\sigma_{0}$ como la conductividad del medio donde se encuentra la fuente de corriente y $B_0(r)$ el campo magnético en un punto $r$ con $\mu_{0}$ como la permeabilidad magnética.
+
+Estas ecuaciones describen las bases de la solución del problema directo en la electroencefalografía, donde se busca determinar la distribución de potenciales eléctricos en la superficie del cuero cabelludo a partir de la actividad neuronal en la corteza cerebral.
+
+---
+layout: pageBar
+title: "Introducción - Problema Directo y BEM"
+---
+
+# Método de Elementos de frontera
+Introducción
+
+- Habiendo establecido la relación entre la corriente eléctrica generada por la actividad neuronal y el campo eléctrico y magnético en un volumen conductor, es posible resolver el problema directo en la electroencefalografía.
+
+- Una de las técnicas más utilizadas para resolver el problema directo es el método de elementos de frontera (BEM).
+
+- EL BEM es un método numérico que permite para calcular el potencial eléctrico en la superficie de un volumen conductor, y se define como:
+$$
+V(r) = \frac{2\sigma_{0}}{\sigma_{k}^{-} + {\sigma_{k}^{+}}} V_{0}(r) + \frac{1}{2\pi} \sum_{j=1}^{R}\frac{\sigma_{j}^{-}-\sigma_{j}^{+}}{\sigma_{k}^{-}+\sigma_{k}^{+}} \int_{r'\varepsilon S_{j}} V(r') \frac{r'-r}{||r'-r||^3}\partial S_{j}\text{,}
+$$
+
+donde $\sigma_{0}$ corresponde al medio en el que el dipolo fuente está localizado (la malla de la corteza cerebral) y $V_{0}(\mathbf{r})$ es el potencial en $\mathbf{r}$ para un medio infinito con conductividad $\sigma_{0}$, mientras que 
+$\sigma_{j}^{-}$ y $\sigma_{j}^{+}$ son las conductividades de los compartimentos interno y externo divididos por la interfaz $S_{j}$;
+
+---
+layout: pageBar
+title: Obejtivos
+---
+
+# Hipótesis y Obejtivos
+.
+
+**Hipótesis**
+
+Existen rangos de error tolerables al definir una razón de conductividad eléctrica cerebro/cráneo en la solución del problema inverso en EEG y la tolerancia estará dictada por la frontera de Cramér-Rao.
+
+**Obejtivo Principal**
+
+Implementar un método de estimación del error incurrido en la localización de fuentes de actividad neuronal al resolver el problema inverso con diferentes valores de la razón de conductividad eléctrica cerebro/cráneo, basado en el cálculo de modelos de electroencefalograma en geometrías realistas obtenidas con el método de elementos de frontera.
+
+**Obejtivos Particulares**
+
+- Implementar la solución del problema directo en EEG en geometrías realistas con diferentes valores de la razón de conductividad eléctrica cerebro/cráneo, utilizando un dipolo de corriente eléctrica como modelo de un evento de respuesta evocada en distintas zonas de la corteza cerebral representando fuentes de actividad neuronal, y con un nivel de ruido variable.
+- Calcular el problema inverso en EEG probando los diferentes valores de la razón de conductividad eléctrica cerebro/cráneo en las soluciones del problema directo, y obtener el error incurrido en la localización de fuentes de actividad neuronal entre las utilizadas en la solución del problema directo y las obtenidas en el problema inverso.
+- Analizar el error incurrido en la localización de fuentes de actividad neuronal utilizando la frontera de Cramér-Rao.
 
 
 
@@ -348,10 +445,8 @@ Metodología
   <img class="w-full max-w-md" border="rounded" src="./gfx/EEG_10-10.png" alt="" style="background-color: white;">
 </div>
 
-- Arreglo de electrodos EEG con sistema 10-10, tomada de la literatura[^2]
--  TODO: añadir modleo 3d del arreglo de electrodos
+- Arreglo de electrodos EEG con sistema 10-10, tomada de la literatura
 
-[^2]: Source: "EEG Electrode Placement" by John Doe, available at [EEG Source](http://example.com/eeg-source).
 
 ---
 layout: pageBar
@@ -851,14 +946,6 @@ stateDiagram-v2
   }
   
 ```
-
----
-layout: pageBar
-title: "Resultados"
----
-
-# Resultados
-Resumen
 
 
 
@@ -1430,7 +1517,7 @@ class: text-center
 ---
 layout: pageBar
 title: "Anexo - Resultados Somatosensorial"
-class: text-left
+
 ---
 
 # Evaluación del Error Incurrido
